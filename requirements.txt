@@ -1,0 +1,31 @@
+# FastAPI & Server
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0        # Untuk PostgreSQL
+alembic>=1.13.0               # Migrasi database
+
+# Machine Learning
+scikit-learn>=1.4.0
+pandas>=2.0.0
+numpy>=1.24.0
+joblib>=1.4.0
+statsmodels>=0.14.0           # Untuk ARIMA
+openpyxl>=3.1.0               # Untuk export Excel
+
+# Utility
+python-dotenv>=1.0.0          # Untuk .env
+python-multipart>=0.0.9       # Upload file
+jinja2>=3.1.0                 # Template (jika butuh PDF/email)
+python-jose[cryptography]>=3.3.0  # JWT
+passlib[bcrypt]>=1.7.0        # Hash password
+
+# Development & Testing
+pydantic>=2.0                 # FastAPI schema
+pytest>=8.0                   # Testing
+httpx>=0.25.0                 # Untuk async test client
+
+# Task Scheduling
+schedule>=1.2.0               # Background scheduler untuk update model

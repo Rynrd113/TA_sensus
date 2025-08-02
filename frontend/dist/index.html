@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/medical-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- DNS prefetch for better performance -->
+    <link rel="dns-prefetch" href="//localhost:8000">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preconnect and preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Performance hints -->
+    <meta name="theme-color" content="#0066cc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- SEO -->
+    <title>SENSUS-RS | Sistem Prediksi Indikator Rumah Sakit</title>
+    <meta name="description" content="Sistem prediksi indikator performa rumah sakit menggunakan machine learning untuk BOR, BTO, ALOS, dan TOI" />
+    <meta name="keywords" content="rumah sakit, indikator, prediksi, BOR, machine learning, healthcare analytics" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SENSUS-RS - Sistem Prediksi Indikator RS">
+    <meta property="og:description" content="Sistem prediksi indikator performa rumah sakit menggunakan machine learning">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload critical resources -->
+    <link rel="modulepreload" href="data:application/octet-stream;base64,aW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JwppbXBvcnQgUmVhY3RET00gZnJvbSAncmVhY3QtZG9tL2NsaWVudCcKaW1wb3J0IHsgUXVlcnlDbGllbnQsIFF1ZXJ5Q2xpZW50UHJvdmlkZXIgfSBmcm9tICdAdGFuc3RhY2svcmVhY3QtcXVlcnknCmltcG9ydCBBcHAgZnJvbSAnLi9BcHAnCmltcG9ydCAnLi9zdHlsZXMvbWVkaWNhbC5jc3MnCgovLyBDcmVhdGUgYW4gb3B0aW1pemVkIGNsaWVudApjb25zdCBxdWVyeUNsaWVudCA9IG5ldyBRdWVyeUNsaWVudCh7CiAgZGVmYXVsdE9wdGlvbnM6IHsKICAgIHF1ZXJpZXM6IHsKICAgICAgc3RhbGVUaW1lOiA1ICogNjAgKiAxMDAwLCAvLyA1IG1pbnV0ZXMgKGxlYmloIGxhbWEpCiAgICAgIGdjVGltZTogMTAgKiA2MCAqIDEwMDAsIC8vIDEwIG1pbnV0ZXMgKGxlYmloIGxhbWEgdW50dWsgY2FjaGUpCiAgICAgIHJldHJ5OiAoZmFpbHVyZUNvdW50LCBlcnJvcjogYW55KSA9PiB7CiAgICAgICAgLy8gRG9uJ3QgcmV0cnkgb24gNHh4IGVycm9ycwogICAgICAgIGlmIChlcnJvcj8ucmVzcG9uc2U/LnN0YXR1cyA+PSA0MDAgJiYgZXJyb3I/LnJlc3BvbnNlPy5zdGF0dXMgPCA1MDApIHsKICAgICAgICAgIHJldHVybiBmYWxzZTsKICAgICAgICB9CiAgICAgICAgcmV0dXJuIGZhaWx1cmVDb3VudCA8IDE7IC8vIEt1cmFuZ2kgcmV0cnkgdW50dWsgcGVyZm9ybWFuY2UKICAgICAgfSwKICAgICAgcmVmZXRjaE9uV2luZG93Rm9jdXM6IGZhbHNlLAogICAgICByZWZldGNoT25Nb3VudDogZmFsc2UsIC8vIEphbmdhbiBhdXRvIHJlZmV0Y2gKICAgICAgcmVmZXRjaE9uUmVjb25uZWN0OiBmYWxzZSwKICAgIH0sCiAgICBtdXRhdGlvbnM6IHsKICAgICAgcmV0cnk6IDEsCiAgICB9LAogIH0sCn0pCgovLyBQZXJmb3JtYW5jZSBvcHRpbWl6YXRpb246IFNraXAgc3RyaWN0IG1vZGUgaW4gcHJvZHVjdGlvbgpjb25zdCBBcHBXcmFwcGVyID0gKCkgPT4gKAogIDxRdWVyeUNsaWVudFByb3ZpZGVyIGNsaWVudD17cXVlcnlDbGllbnR9PgogICAgPEFwcCAvPgogIDwvUXVlcnlDbGllbnRQcm92aWRlcj4KKTsKCmNvbnN0IHJvb3QgPSBSZWFjdERPTS5jcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyb290JykhKTsKCi8vIFVzZSBkaWZmZXJlbnQgcmVuZGVyIGJhc2VkIG9uIGVudmlyb25tZW50CmlmIChwcm9jZXNzLmVudi5OT0RFX0VOViA9PT0gJ2RldmVsb3BtZW50JykgewogIHJvb3QucmVuZGVyKAogICAgPFJlYWN0LlN0cmljdE1vZGU+CiAgICAgIDxBcHBXcmFwcGVyIC8+CiAgICA8L1JlYWN0LlN0cmljdE1vZGU+CiAgKTsKfSBlbHNlIHsKICByb290LnJlbmRlcig8QXBwV3JhcHBlciAvPik7Cn0K">
+    
+    <!-- Critical CSS yang diinline untuk faster first paint -->
+    <style>
+      /* Critical CSS untuk menghindari FOUC */
+      html {
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        font-feature-settings: 'cv02','cv03','cv04','cv11';
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f9fafb;
+        color: #111827;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Loading spinner - critical untuk first paint */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e5e7eb;
+        border-top: 3px solid #0066cc;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+      }
+      
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      
+      /* Hide loading spinner setelah load */
+      .app-loaded .loading-spinner {
+        display: none;
+      }
+      
+      /* Skeleton untuk loading states */
+      .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+      }
+      
+      @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+    </style>
+    <script type="module" crossorigin src="/js/index-DfPtAqCL.js"></script>
+    <link rel="modulepreload" crossorigin href="/js/chunk-DM_ejLFS.js">
+    <link rel="modulepreload" crossorigin href="/js/chunk-DywYPL-g.js">
+    <link rel="modulepreload" crossorigin href="/js/chunk-B_g4F0yl.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-C4V251va.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Fallback loading dengan lebih baik untuk performance -->
+      <div class="loading-spinner" aria-label="Loading application"></div>
+    </div>
+  </body>
+</html>

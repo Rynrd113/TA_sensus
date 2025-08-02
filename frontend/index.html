@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/medical-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- DNS prefetch for better performance -->
+    <link rel="dns-prefetch" href="//localhost:8000">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preconnect and preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Performance hints -->
+    <meta name="theme-color" content="#0066cc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- SEO -->
+    <title>SENSUS-RS | Sistem Prediksi Indikator Rumah Sakit</title>
+    <meta name="description" content="Sistem prediksi indikator performa rumah sakit menggunakan machine learning untuk BOR, BTO, ALOS, dan TOI" />
+    <meta name="keywords" content="rumah sakit, indikator, prediksi, BOR, machine learning, healthcare analytics" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SENSUS-RS - Sistem Prediksi Indikator RS">
+    <meta property="og:description" content="Sistem prediksi indikator performa rumah sakit menggunakan machine learning">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload critical resources -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    
+    <!-- Critical CSS yang diinline untuk faster first paint -->
+    <style>
+      /* Critical CSS untuk menghindari FOUC */
+      html {
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        font-feature-settings: 'cv02','cv03','cv04','cv11';
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f9fafb;
+        color: #111827;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Loading spinner - critical untuk first paint */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e5e7eb;
+        border-top: 3px solid #0066cc;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+      }
+      
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      
+      /* Hide loading spinner setelah load */
+      .app-loaded .loading-spinner {
+        display: none;
+      }
+      
+      /* Skeleton untuk loading states */
+      .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+      }
+      
+      @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Fallback loading dengan lebih baik untuk performance -->
+      <div class="loading-spinner" aria-label="Loading application"></div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

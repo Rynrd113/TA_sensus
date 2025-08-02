@@ -1,0 +1,605 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🏥 Professional Medical Design System */
+@layer base {
+  /* Reset & Base */
+  * {
+    @apply border-gray-200;
+  }
+
+  
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.6;
+  }
+  
+  /* Professional Typography System */
+  h1 { 
+    @apply text-4xl font-bold text-slate-900 leading-tight tracking-tight;
+    letter-spacing: -0.025em;
+  }
+  h2 { 
+    @apply text-3xl font-semibold text-slate-800 leading-tight tracking-tight;
+    letter-spacing: -0.02em;
+  }
+  h3 { 
+    @apply text-2xl font-semibold text-slate-800 leading-snug tracking-tight;
+    letter-spacing: -0.015em;
+  }
+  h4 { 
+    @apply text-xl font-medium text-slate-700 leading-snug;
+    letter-spacing: -0.01em;
+  }
+  h5 { 
+    @apply text-lg font-medium text-slate-700;
+    letter-spacing: -0.005em;
+  }
+  h6 { 
+    @apply text-base font-medium text-slate-600;
+  }
+  
+  p {
+    @apply text-slate-600 leading-relaxed;
+  }
+  
+  /* Professional Medical Color Palette - Vmeds Inspired */
+  .medical-text-primary { @apply text-primary-500; }
+  .medical-text-secondary { @apply text-vmeds-900; }
+  .medical-text-success { @apply text-emerald-700; }
+  .medical-text-warning { @apply text-amber-700; }
+  .medical-text-error { @apply text-red-700; }
+  .medical-text-info { @apply text-primary-600; }
+}
+
+@layer components {
+  /* 🏥 Professional Container System */
+  .medical-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .medical-container-sm {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .medical-container-xs {
+    @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 🏥 Professional Card System */
+  .medical-card {
+    @apply bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/60 shadow-lg shadow-slate-900/5;
+    @apply hover:shadow-xl hover:shadow-slate-900/10 transition-all duration-300 ease-out;
+    @apply ring-1 ring-slate-900/5;
+  }
+  
+  .medical-card-elevated {
+    @apply medical-card shadow-2xl shadow-slate-900/15 border-slate-300/50;
+    @apply hover:shadow-3xl hover:-translate-y-1 transform;
+  }
+  
+  .medical-card-interactive {
+    @apply medical-card cursor-pointer;
+    @apply hover:bg-gradient-to-br hover:from-white hover:to-slate-50;
+    @apply hover:border-blue-200 hover:ring-blue-100;
+    @apply active:scale-[0.98] transform transition-transform;
+  }
+  
+  .medical-card-header {
+    @apply px-6 py-5 border-b border-slate-200/60 bg-gradient-to-r from-slate-50 to-slate-100/50;
+    @apply rounded-t-xl;
+  }
+  
+  .medical-card-body {
+    @apply px-6 py-5;
+  }
+  
+  .medical-card-footer {
+    @apply px-6 py-4 border-t border-slate-200/60 bg-gradient-to-r from-slate-50/50 to-slate-100/30;
+    @apply rounded-b-xl;
+  }
+
+  /* 🏥 Professional Button System - Vmeds Colors */
+  .medical-btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-medical transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .medical-btn-primary {
+    @apply bg-primary-500 text-white shadow-lg;
+    @apply hover:bg-primary-600 hover:shadow-xl;
+    @apply focus:ring-primary-500 focus:ring-offset-primary-50;
+  }
+  
+  .medical-btn-secondary {
+    @apply bg-vmeds-900 text-white shadow-lg;
+    @apply hover:bg-vmeds-800 hover:shadow-xl;
+    @apply focus:ring-vmeds-500 focus:ring-offset-vmeds-50;
+  }
+  
+  .medical-btn-success {
+    @apply bg-success-600 text-white shadow-lg;
+    @apply hover:bg-success-700 hover:shadow-xl;
+    @apply focus:ring-success-500 focus:ring-offset-success-50;
+  }
+  
+  .medical-btn-warning {
+    @apply bg-warning-500 text-white shadow-lg;
+    @apply hover:bg-warning-600 hover:shadow-xl;
+    @apply focus:ring-warning-500 focus:ring-offset-warning-50;
+  }
+  
+  .medical-btn-error {
+    @apply bg-error-600 text-white shadow-lg;
+    @apply hover:bg-error-700 hover:shadow-xl;
+    @apply focus:ring-error-500 focus:ring-offset-error-50;
+  }  .medical-btn-outline {
+    @apply bg-white text-slate-700 border-2 border-slate-300 shadow-sm;
+    @apply hover:bg-slate-50 hover:border-slate-400 hover:shadow-md;
+    @apply focus:ring-slate-500 focus:ring-offset-white;
+  }
+  
+  .medical-btn-ghost {
+    @apply text-slate-600 bg-transparent shadow-none;
+    @apply hover:bg-slate-100 hover:text-slate-700;
+    @apply focus:ring-slate-500 focus:ring-offset-white;
+  }
+
+  /* 🏥 Professional Badge System - Vmeds Colors */
+  .medical-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .medical-badge-primary {
+    @apply medical-badge bg-primary-100 text-primary-800;
+  }
+  
+  .medical-badge-secondary {
+    @apply medical-badge bg-vmeds-100 text-vmeds-800;
+  }
+  
+  .medical-badge-success {
+    @apply bg-emerald-50 text-emerald-700 ring-emerald-600/20;
+    @apply hover:bg-emerald-100 hover:ring-emerald-600/30;
+  }
+  
+  .medical-badge-warning {
+    @apply bg-amber-50 text-amber-700 ring-amber-600/20;
+    @apply hover:bg-amber-100 hover:ring-amber-600/30;
+  }
+  
+  .medical-badge-error {
+    @apply bg-red-50 text-red-700 ring-red-600/20;
+    @apply hover:bg-red-100 hover:ring-red-600/30;
+  }
+  
+  .medical-badge-neutral {
+    @apply bg-slate-50 text-slate-700 ring-slate-600/20;
+    @apply hover:bg-slate-100 hover:ring-slate-600/30;
+  }
+
+  /* 🏥 Professional Input System */
+  .medical-input {
+    @apply block w-full rounded-xl border-0 px-4 py-3 text-slate-900 shadow-sm;
+    @apply ring-1 ring-inset ring-slate-300 placeholder:text-slate-400;
+    @apply focus:ring-2 focus:ring-inset focus:ring-blue-600 transition-all duration-200;
+    @apply disabled:bg-slate-50 disabled:text-slate-500 disabled:ring-slate-200;
+    @apply hover:ring-slate-400 hover:shadow-md;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .medical-input-error {
+    @apply ring-red-500 focus:ring-red-600 bg-red-50/50;
+    @apply hover:ring-red-600;
+  }
+  
+  .medical-input-success {
+    @apply ring-emerald-500 focus:ring-emerald-600 bg-emerald-50/50;
+    @apply hover:ring-emerald-600;
+  }
+
+  /* 🏥 Professional Table System */
+  .medical-table {
+    @apply min-w-full divide-y divide-slate-200 bg-white shadow-lg rounded-xl overflow-hidden;
+    @apply ring-1 ring-slate-900/5;
+  }
+  
+  .medical-table-header {
+    @apply bg-gradient-to-r from-slate-50 to-slate-100;
+  }
+  
+  .medical-table-header th {
+    @apply px-6 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wide;
+    letter-spacing: 0.05em;
+  }
+  
+  .medical-table-body {
+    @apply bg-white divide-y divide-slate-100;
+  }
+  
+  .medical-table-body td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-slate-600;
+    font-weight: 500;
+  }
+  
+  .medical-table-row-hover {
+    @apply hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/30;
+    @apply transition-all duration-200 cursor-pointer;
+  }
+
+  /* 🏥 Professional Loading States */
+  .medical-skeleton {
+    @apply animate-pulse bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 rounded-lg;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  .medical-spinner {
+    @apply w-6 h-6 border-2 border-slate-200 border-t-blue-600 rounded-full;
+    animation: spin 1s linear infinite;
+  }
+  
+  .medical-pulse {
+    animation: pulse-professional 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* 🏥 Professional Status Indicators */
+  .medical-status-dot {
+    @apply inline-block w-3 h-3 rounded-full ring-2 ring-white shadow-sm;
+  }
+  
+  .medical-status-success {
+    @apply bg-emerald-500 shadow-emerald-500/30;
+  }
+  
+  .medical-status-warning {
+    @apply bg-amber-500 shadow-amber-500/30;
+  }
+  
+  .medical-status-error {
+    @apply bg-red-500 shadow-red-500/30;
+  }
+  
+  .medical-status-neutral {
+    @apply bg-slate-400 shadow-slate-400/30;
+  }
+
+  /* 🏥 Professional Navigation - Vmeds Colors */
+  .medical-nav {
+    @apply bg-white shadow-sm border-b border-gray-200;
+  }
+  
+  .medical-nav-item {
+    @apply px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors duration-200;
+  }
+  
+  .medical-nav-item-active {
+    @apply medical-nav-item bg-primary-100 text-primary-700;
+  }
+
+  /* 🏥 Professional Alerts */
+  .medical-alert {
+    @apply rounded-xl p-5 border shadow-sm ring-1 ring-inset;
+    @apply transition-all duration-200;
+  }
+  
+  .medical-alert-info {
+    @apply bg-blue-50 border-blue-200 text-blue-800 ring-blue-600/20;
+    @apply hover:bg-blue-100/70 hover:shadow-md;
+  }
+  
+  .medical-alert-success {
+    @apply bg-emerald-50 border-emerald-200 text-emerald-800 ring-emerald-600/20;
+    @apply hover:bg-emerald-100/70 hover:shadow-md;
+  }
+  
+  .medical-alert-warning {
+    @apply bg-amber-50 border-amber-200 text-amber-800 ring-amber-600/20;
+    @apply hover:bg-amber-100/70 hover:shadow-md;
+  }
+  
+  .medical-alert-error {
+    @apply bg-red-50 border-red-200 text-red-800 ring-red-600/20;
+    @apply hover:bg-red-100/70 hover:shadow-md;
+  }
+
+  /* 🏥 Professional StatCard System - Vmeds Colors */
+  .stat-card {
+    @apply bg-white rounded-medical-lg shadow-medical p-6 border border-gray-100 hover:shadow-medical-lg transition-all duration-300;
+  }
+
+  .stat-card-critical {
+    @apply stat-card border-l-4 border-l-error-500 bg-error-50;
+  }
+
+  .stat-card-warning {
+    @apply stat-card border-l-4 border-l-warning-500 bg-warning-50;
+  }
+
+  .stat-card-good {
+    @apply stat-card border-l-4 border-l-primary-500 bg-primary-50;
+  }
+
+  .stat-card-excellent {
+    @apply stat-card border-l-4 border-l-success-500 bg-success-50;
+  }
+
+  .stat-card-accent {
+    @apply stat-card border-l-4 border-l-vmeds-900 bg-gradient-to-r from-vmeds-50 to-white;
+  }
+
+  .stat-card-header {
+    @apply flex items-start justify-between mb-4;
+  }
+
+  .stat-card-title {
+    @apply flex-1 min-w-0;
+  }
+
+  .stat-card-title h3 {
+    @apply text-sm font-semibold text-gray-700 truncate leading-tight;
+    letter-spacing: -0.01em;
+  }
+
+  .stat-card-icon {
+    @apply flex-shrink-0 ml-3 p-2 rounded-lg;
+  }
+
+  .stat-card-icon.critical {
+    @apply bg-red-100 text-red-600;
+  }
+
+  .stat-card-icon.warning {
+    @apply bg-amber-100 text-amber-600;
+  }
+
+  .stat-card-icon.good {
+    @apply text-primary-600 bg-primary-100;
+  }
+
+  .stat-card-icon.excellent {
+    @apply text-emerald-600 bg-emerald-100;
+  }  .stat-card-value {
+    @apply mb-3;
+  }
+
+  .stat-card-number {
+    @apply flex items-baseline gap-2;
+  }
+
+  .stat-card-number span:first-child {
+    @apply text-3xl font-bold text-gray-900 tracking-tight;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-card-number span:last-child {
+    @apply text-base font-medium text-gray-500;
+  }
+
+  .stat-card-description {
+    @apply text-sm text-gray-600 mb-3 leading-relaxed;
+  }
+
+  .stat-card-trend {
+    @apply flex items-center gap-2 text-sm;
+  }
+
+  .stat-card-trend-up {
+    @apply text-emerald-600 font-semibold;
+  }
+
+  .stat-card-trend-down {
+    @apply text-red-600 font-semibold;
+  }
+
+  .stat-card-trend-neutral {
+    @apply text-gray-500 font-medium;
+  }
+
+  /* 🏥 Professional Grid System */
+  .medical-stats-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8;
+  }
+
+  .medical-responsive-padding {
+    @apply p-4 sm:p-6;
+  }
+}
+
+@layer utilities {
+  /* 🏥 Professional Layout Utilities */
+  .medical-grid {
+    @apply grid gap-6;
+  }
+  
+  .medical-grid-cols-1 {
+    @apply medical-grid grid-cols-1;
+  }
+  
+  .medical-grid-cols-2 {
+    @apply medical-grid grid-cols-1 md:grid-cols-2;
+  }
+  
+  .medical-grid-cols-3 {
+    @apply medical-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  .medical-grid-cols-4 {
+    @apply medical-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4;
+  }
+  
+  /* Professional Spacing */
+  .medical-space-y {
+    @apply space-y-8;
+  }
+  
+  .medical-space-x {
+    @apply space-x-8;
+  }
+  
+  /* Professional Responsive */
+  .medical-responsive {
+    @apply w-full max-w-full overflow-hidden;
+  }
+  
+  /* Professional Transitions */
+  .medical-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .medical-transition-slow {
+    @apply transition-all duration-500 ease-out;
+  }
+  
+  /* Professional Glassmorphism */
+  .medical-glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+    @apply shadow-xl shadow-slate-900/10;
+  }
+  
+  /* Professional Text Effects */
+  .medical-text-gradient {
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+  
+  .medical-shadow-text {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 🏥 Professional Custom Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-professional {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 🏥 Professional Media Queries */
+@media print {
+  .medical-no-print {
+    display: none !important;
+  }
+  
+  .medical-print-break {
+    page-break-after: always;
+  }
+  
+  .medical-card {
+    @apply border border-slate-300 shadow-none bg-white;
+    break-inside: avoid;
+  }
+  
+  .medical-btn {
+    @apply bg-slate-100 text-slate-900 border border-slate-300;
+  }
+}
+
+/* 🏥 Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .dark-mode .medical-card {
+    @apply bg-slate-800/90 border-slate-700/60 text-slate-100;
+  }
+  
+  .dark-mode .medical-input {
+    @apply bg-slate-800 border-slate-700 text-slate-100 ring-slate-600;
+  }
+  
+  .dark-mode .medical-nav {
+    @apply bg-slate-900/90 border-slate-800;
+  }
+}
+
+/* 🏥 High Contrast Mode */
+@media (prefers-contrast: high) {
+  .medical-card {
+    @apply border-2 border-slate-900 shadow-xl;
+  }
+  
+  .medical-btn-primary {
+    @apply bg-slate-900 text-white border-2 border-slate-900;
+  }
+  
+  .medical-input {
+    @apply border-2 border-slate-900 ring-2 ring-slate-900;
+  }
+}
+
+/* 🏥 Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .medical-transition,
+  .medical-transition-slow,
+  .medical-spinner,
+  .medical-pulse,
+  .medical-skeleton {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .medical-card-interactive:hover {
+    transform: none !important;
+  }
+  
+  .medical-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* 🏥 Focus Visible Support */
+@supports selector(:focus-visible) {
+  .medical-btn:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .medical-input:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+}
