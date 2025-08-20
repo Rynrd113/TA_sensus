@@ -6,17 +6,17 @@ from fastapi.responses import JSONResponse
 import logging
 
 # Import router
-from backend.api.v1.sensus_router import router as sensus_router
-from backend.api.v1.prediksi_router import router as prediksi_router
-from backend.api.v1.dashboard_router import router as dashboard_router
-from backend.api.v1.indikator_router import router as indikator_router
-from backend.api.v1.export_router import router as export_router
+from api.v1.sensus_router import router as sensus_router
+from api.v1.prediksi_router import router as prediksi_router
+from api.v1.dashboard_router import router as dashboard_router
+from api.v1.indikator_router import router as indikator_router
+from api.v1.export_router import router as export_router
 
 # Import untuk database
-from backend.database.engine import engine
-from backend.models.sensus import Base
-from backend.core.logging_config import log_error
-from backend.tasks.scheduler import start_scheduler_thread
+from database.engine import engine
+from models.sensus import Base
+from core.logging_config import log_error
+from tasks.scheduler import start_scheduler_thread
 
 # Buat tabel saat startup
 Base.metadata.create_all(bind=engine)

@@ -10,7 +10,7 @@ import {
 import ExportCard from "../components/dashboard/ExportCard";
 import AllIndicatorsChart from "../components/charts/AllIndicatorsChart";
 import BorTrendChart from "../components/charts/BorTrendChart";
-import ComprehensiveIndicatorCards from "../components/ComprehensiveIndicatorCards";
+import ComprehensiveIndicatorCards from "../components/dashboard/IndicatorCards";
 
 export default function AllIndicatorsPage() {
   const [loading, setLoading] = useState(false);

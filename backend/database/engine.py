@@ -1,6 +1,6 @@
 # backend/database/engine.py
 from sqlalchemy import create_engine
-from backend.core.config import settings
+from core.config import settings
 import os
 
 # Pastikan direktori db ada
@@ -9,7 +9,7 @@ os.makedirs(os.path.dirname(db_path), exist_ok=True)
 
 # backend/database/engine.py
 from sqlalchemy import create_engine
-from backend.core.config import settings
+from core.config import settings
 import os
 
 # Pastikan direktori db ada

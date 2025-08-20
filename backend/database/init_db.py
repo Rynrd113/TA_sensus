@@ -3,9 +3,9 @@
 Script untuk inisialisasi database dan buat contoh data
 """
 from datetime import date, timedelta
-from backend.models.sensus import Base, SensusHarian
-from backend.database.engine import engine
-from backend.database.session import SessionLocal
+from models.sensus import Base, SensusHarian
+from database.engine import engine
+from database.session import SessionLocal
 import random
 
 def create_tables():

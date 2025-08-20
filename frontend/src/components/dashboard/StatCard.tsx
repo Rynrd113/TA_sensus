@@ -11,6 +11,8 @@ interface StatCardProps {
   icon?: React.ReactNode;
   trend?: string;
   benchmark?: string;
+  className?: string;
+  footer?: React.ReactNode;
 }
 
 const StatCard: React.FC<StatCardProps> = ({
@@ -22,7 +24,9 @@ const StatCard: React.FC<StatCardProps> = ({
   variant = 'default',
   icon,
   trend,
-  benchmark
+  benchmark,
+  className = '',
+  footer
 }) => {
   const getVariantStyles = () => {
     switch (variant) {
@@ -64,7 +68,7 @@ const StatCard: React.FC<StatCardProps> = ({
   };
 
   return (
-    <div className={`rounded-lg border p-6 shadow-sm hover:shadow-md transition-shadow ${getVariantStyles()}`}>
+    <div className={`rounded-lg border p-6 shadow-sm hover:shadow-md transition-shadow ${getVariantStyles()} ${className}`}>
       <div className="flex items-center justify-between mb-4">
         <h3 className={`text-sm font-medium ${getTitleColor()}`}>
           {title}
@@ -119,6 +123,8 @@ const StatCard: React.FC<StatCardProps> = ({
           </p>
         </div>
       )}
+      
+      {footer && footer}
     </div>
   );
 };

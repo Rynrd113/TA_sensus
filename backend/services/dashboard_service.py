@@ -1,7 +1,7 @@
 # backend/services/dashboard_service.py
 from sqlalchemy.orm import Session
 from sqlalchemy import func, extract, and_
-from backend.models.sensus import SensusHarian
+from models.sensus import SensusHarian
 from datetime import datetime, date
 from typing import Dict, List, Any
 
@@ -44,7 +44,7 @@ def get_dashboard_stats(db: Session, bulan: int = None, tahun: int = None) -> Di
     rata_rata_bor = sum(d.bor for d in data_bulan) / jumlah_hari_data
     
     # Hitung indikator menggunakan service yang sama untuk konsistensi
-    from backend.services.indikator_service import hitung_indikator_bulanan
+    from services.indikator_service import hitung_indikator_bulanan
     
     # Gunakan service indikator yang sudah standar
     indikator_bulanan = hitung_indikator_bulanan(data_bulan, tt_total, jumlah_hari_data)

@@ -4,52 +4,17 @@ from sqlalchemy.orm import Session
 from datetime import date
 from typing import List
 
-from backend.database.session import get_db
-from backend.models.sensus import Base, SensusHarian
-from backend.database.engine import engine
-from backend.schemas.sensus import SensusCreate, SensusResponse, SensusStats
-from backend.core.logging_config import log_sensus_activity, log_error
+from database.session import get_db
+from models.sensus import Base, SensusHarian
+from database.engine import engine
+from schemas.sensus import SensusCreate, SensusResponse, SensusStats
+from core.logging_config import log_sensus_activity, log_error
+from utils.indikator_calculator import indikator_calculator
 
 # Buat tabel jika belum ada
 Base.metadata.create_all(bind=engine)
 
 router = APIRouter(prefix="/sensus", tags=["sensus"])
-
-# Fungsi hitung indikator (Standar Kemenkes)
-def hitung_indikator(
-    pasien_awal: int, 
-    masuk: int, 
-    keluar: int, 
-    tt: int,
-    hari_rawat: int = None  # untuk LOS
-) -> dict:
-    """Hitung semua indikator rawat inap sesuai standar Kemenkes"""
-    pasien_akhir = pasien_awal + masuk - keluar
-    
-    # BOR - Bed Occupancy Rate
-    bor = round((pasien_akhir / tt) * 100, 1) if tt > 0 else 0.0
-    
-    # LOS - Length of Stay (rata-rata lama dirawat)
-    # Rumus: Total hari rawat / Jumlah pasien keluar
-    los = round(hari_rawat / keluar, 1) if keluar > 0 and hari_rawat else 0.0
-    
-    # BTO - Bed Turn Over (frekuensi pemakaian tempat tidur)
-    # Rumus: Jumlah pasien keluar / Jumlah tempat tidur tersedia
-    bto = round(keluar / tt, 1) if tt > 0 else 0.0
-    
-    # TOI - Turn Over Interval (rata-rata hari kosong tempat tidur)
-    # Rumus: ((TT - Hari rawat) x Periode) / Jumlah pasien keluar
-    # Asumsi periode = 1 hari
-    tt_kosong = max(0, tt - pasien_akhir)
-    toi = round(tt_kosong / keluar, 1) if keluar > 0 else 0.0
-    
-    return {
-        "pasien_akhir": pasien_akhir,
-        "bor": bor,
-        "los": los,
-        "bto": bto,
-        "toi": toi
-    }
 
 @router.post("/", response_model=SensusResponse)
 def create_sensus(data: SensusCreate, db: Session = Depends(get_db)):
@@ -62,8 +27,8 @@ def create_sensus(data: SensusCreate, db: Session = Depends(get_db)):
         if exist:
             raise HTTPException(status_code=400, detail="Data untuk tanggal ini sudah ada")
         
-        # Hitung indikator
-        indikator = hitung_indikator(
+        # Hitung indikator menggunakan centralized calculator
+        indikator = indikator_calculator.hitung_indikator_harian(
             data.jml_pasien_awal, 
             data.jml_masuk, 
             data.jml_keluar, 
@@ -98,7 +63,7 @@ def create_sensus(data: SensusCreate, db: Session = Depends(get_db)):
         
         # Auto re-train model setelah data baru
         try:
-            from backend.ml.train import train_arima_and_save
+            from ml.train import train_arima_and_save
             train_arima_and_save()
             log_sensus_activity("MODEL_RETRAIN", {"status": "success"})
         except Exception as e:
@@ -157,8 +122,8 @@ def update_sensus(sensus_id: int, data: SensusCreate, db: Session = Depends(get_
         if exist:
             raise HTTPException(status_code=400, detail="Data untuk tanggal ini sudah ada")
 
-        # Hitung indikator
-        indikator = hitung_indikator(
+        # Hitung indikator menggunakan centralized calculator
+        indikator = indikator_calculator.hitung_indikator_harian(
             data.jml_pasien_awal, 
             data.jml_masuk, 
             data.jml_keluar, 

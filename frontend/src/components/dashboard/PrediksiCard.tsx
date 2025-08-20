@@ -189,7 +189,7 @@ export default function PrediksiCard() {
 
           {/* Info Model */}
           <div className="text-xs text-gray-500 border-t pt-3">
-            Model: ARIMA(1,1,1) | Akurasi tergantung kualitas data historis
+            Model: SARIMA | Dengan komponen seasonal untuk akurasi prediksi yang lebih baik
           </div>
         </div>
       )}

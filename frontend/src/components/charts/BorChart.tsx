@@ -96,7 +96,7 @@ const BorChart: React.FC<BorChartProps> = ({
           {showPrediction && (
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-              <span>Prediksi ARIMA</span>
+              <span>Prediksi SARIMA</span>
             </div>
           )}
           
@@ -155,7 +155,7 @@ const BorChart: React.FC<BorChartProps> = ({
               strokeDasharray="8 4"
               dot={{ fill: '#f59e0b', strokeWidth: 2, r: 5, stroke: '#f59e0b' }}
               connectNulls={false}
-              name="Prediksi ARIMA"
+              name="Prediksi SARIMA"
             />
           )}
         </LineChart>

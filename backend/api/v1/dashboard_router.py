@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 from typing import Dict, Any
 from datetime import date, timedelta
 
-from backend.database.session import get_db
-from backend.models.sensus import SensusHarian
+from database.session import get_db
+from models.sensus import SensusHarian
 
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 
@@ -96,7 +96,7 @@ def get_dashboard_stats(
     tt_total = latest.tempat_tidur_tersedia
 
     # Hitung indikator bulanan menggunakan service yang sama
-    from backend.services.indikator_service import hitung_indikator_bulanan
+    from services.indikator_service import hitung_indikator_bulanan
     
     total_pasien_keluar = sum(d.jml_keluar for d in data_bulanan)
     

@@ -12,7 +12,7 @@ scikit-learn>=1.4.0
 pandas>=2.0.0
 numpy>=1.24.0
 joblib>=1.4.0
-statsmodels>=0.14.0           # Untuk ARIMA
+statsmodels>=0.14.0           # Untuk SARIMA
 openpyxl>=3.1.0               # Untuk export Excel
 
 # Utility

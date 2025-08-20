@@ -147,7 +147,7 @@ const LoginPage: React.FC = () => {
         {/* Footer */}
         <div className="text-center text-xs text-gray-500 space-y-1">
           <p>© 2025 SENSUS-RS - Sistem Prediksi BOR</p>
-          <p>🏥 Tugas Akhir | 🤖 ARIMA Model | ⚡ React + FastAPI</p>
+          <p>🏥 Tugas Akhir | 🤖 SARIMA Model | ⚡ React + FastAPI</p>
         </div>
       </div>
     </div>

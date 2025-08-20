@@ -9,9 +9,9 @@ from typing import Optional
 import joblib
 import os
 
-from backend.database.session import get_db
-from backend.models.sensus import SensusHarian
-from backend.services.indikator_service import hitung_indikator_bulanan
+from database.session import get_db
+from models.sensus import SensusHarian
+from services.indikator_service import hitung_indikator_bulanan
 
 router = APIRouter(prefix="/export", tags=["export"])
 

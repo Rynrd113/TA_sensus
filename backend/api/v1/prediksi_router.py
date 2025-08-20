@@ -4,8 +4,8 @@ import joblib
 import pandas as pd
 from typing import List
 import os
-from backend.schemas.prediksi import PrediksiResponse, RetrainResponse
-from backend.core.logging_config import log_prediction, log_error
+from schemas.prediksi import PrediksiResponse, RetrainResponse
+from core.logging_config import log_prediction, log_error
 
 router = APIRouter(prefix="/prediksi", tags=["prediksi"])
 
@@ -80,7 +80,7 @@ def predict_bor_next_days(hari: int = 3):
 def retrain_model():
     """Endpoint untuk melatih ulang model ARIMA dengan logging"""
     try:
-        from backend.ml.train import train_arima_and_save
+        from ml.train import train_arima_and_save
         
         log_error("MODEL_RETRAIN", "Starting model retraining...")
         success = train_arima_and_save()

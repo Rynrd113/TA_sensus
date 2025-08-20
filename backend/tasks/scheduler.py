@@ -3,28 +3,28 @@ import schedule
 import time
 import threading
 from datetime import datetime
-from backend.ml.train import train_arima_and_save
-from backend.core.logging_config import log_error
+from ml.train import train_sarima_and_save
+from core.logging_config import log_error
 
 def retrain_model_weekly():
-    """Retrain model otomatis setiap minggu"""
+    """Retrain model SARIMA otomatis setiap minggu"""
     try:
-        log_error("SCHEDULER", "Starting weekly model retraining...")
-        success = train_arima_and_save()
+        log_error("SCHEDULER", "Starting weekly SARIMA model retraining...")
+        success = train_sarima_and_save()
         
         if success:
-            log_error("SCHEDULER", "Weekly model retraining completed successfully")
+            log_error("SCHEDULER", "Weekly SARIMA model retraining completed successfully")
         else:
-            log_error("SCHEDULER", "Weekly model retraining failed - insufficient data")
+            log_error("SCHEDULER", "Weekly SARIMA model retraining failed - insufficient data")
     except Exception as e:
-        log_error("SCHEDULER", f"Weekly model retraining error: {str(e)}")
+        log_error("SCHEDULER", f"Weekly SARIMA model retraining error: {str(e)}")
 
 def start_scheduler():
     """Start background scheduler"""
     # Schedule retrain setiap Minggu jam 02:00
     schedule.every().sunday.at("02:00").do(retrain_model_weekly)
     
-    log_error("SCHEDULER", "Scheduler started - Weekly retrain scheduled for Sunday 02:00")
+    log_error("SCHEDULER", "Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00")
     
     while True:
         schedule.run_pending()

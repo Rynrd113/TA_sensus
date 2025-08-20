@@ -1,3 +1,4 @@
+import BaseService, { handleServiceError } from './baseService';
 import apiClient from './apiClient';
 import { 
   SensusCreate, 
@@ -7,90 +8,112 @@ import {
 } from '../types/Sensus';
 import { ApiResponse } from '../types/Common';
 
-export class SensusService {
-  private baseUrl = '/sensus/'; // Add trailing slash
+export class SensusService extends BaseService<SensusResponse, SensusCreate> {
+  constructor() {
+    super('/sensus');
+  }
 
-  // Get all sensus data with optional filters
+  // Override getAll to support custom filters
   async getAllSensus(filters?: SensusFilter): Promise<ApiResponse<SensusResponse[]>> {
-    const params = new URLSearchParams();
-    
-    if (filters?.tanggal_mulai) params.append('tanggal_mulai', filters.tanggal_mulai);
-    if (filters?.tanggal_akhir) params.append('tanggal_akhir', filters.tanggal_akhir);
-    if (filters?.bangsal_id) params.append('bangsal_id', filters.bangsal_id.toString());
-    if (filters?.limit) params.append('limit', filters.limit.toString());
-    if (filters?.offset) params.append('offset', filters.offset.toString());
+    try {
+      const params: Record<string, any> = {};
+      
+      if (filters?.tanggal_mulai) params.tanggal_mulai = filters.tanggal_mulai;
+      if (filters?.tanggal_akhir) params.tanggal_akhir = filters.tanggal_akhir;
+      if (filters?.bangsal_id) params.bangsal_id = filters.bangsal_id.toString();
+      if (filters?.limit) params.limit = filters.limit.toString();
+      if (filters?.offset) params.offset = filters.offset.toString();
 
-    const queryString = params.toString();
-    const url = queryString ? `${this.baseUrl}?${queryString}` : this.baseUrl;
-    
-    return apiClient.get<ApiResponse<SensusResponse[]>>(url);
+      return this.getAll(params);
+    } catch (error) {
+      return handleServiceError(error, 'Get sensus data');
+    }
   }
 
-  // Get sensus by ID
+  // Override base methods untuk custom behavior
   async getSensusById(id: number): Promise<ApiResponse<SensusResponse>> {
-    return apiClient.get<ApiResponse<SensusResponse>>(`${this.baseUrl}/${id}`);
+    try {
+      return this.getById(id);
+    } catch (error) {
+      return handleServiceError(error, 'Get sensus by ID');
+    }
   }
 
-  // Create new sensus data
   async createSensus(data: SensusCreate): Promise<ApiResponse<SensusResponse>> {
-    return apiClient.post<ApiResponse<SensusResponse>>(this.baseUrl, data);
+    try {
+      return this.create(data);
+    } catch (error) {
+      return handleServiceError(error, 'Create sensus');
+    }
   }
 
-  // Update sensus data
   async updateSensus(id: number, data: Partial<SensusCreate>): Promise<ApiResponse<SensusResponse>> {
-    return apiClient.put<ApiResponse<SensusResponse>>(`${this.baseUrl}/${id}`, data);
+    try {
+      return this.update(id, data);
+    } catch (error) {
+      return handleServiceError(error, 'Update sensus');
+    }
   }
 
-  // Delete sensus data
   async deleteSensus(id: number): Promise<ApiResponse<null>> {
-    return apiClient.delete<ApiResponse<null>>(`${this.baseUrl}/${id}`);
+    try {
+      return this.delete(id);
+    } catch (error) {
+      return handleServiceError(error, 'Delete sensus');
+    }
   }
 
-  // Get dashboard statistics
+  // Custom methods specific to sensus
   async getDashboardStats(filters?: SensusFilter): Promise<ApiResponse<SensusStats>> {
-    const params = new URLSearchParams();
-    
-    if (filters?.tanggal_mulai) params.append('tanggal_mulai', filters.tanggal_mulai);
-    if (filters?.tanggal_akhir) params.append('tanggal_akhir', filters.tanggal_akhir);
-    if (filters?.bangsal_id) params.append('bangsal_id', filters.bangsal_id.toString());
+    try {
+      const params: Record<string, any> = {};
+      
+      if (filters?.tanggal_mulai) params.tanggal_mulai = filters.tanggal_mulai;
+      if (filters?.tanggal_akhir) params.tanggal_akhir = filters.tanggal_akhir;
+      if (filters?.bangsal_id) params.bangsal_id = filters.bangsal_id.toString();
 
-    const queryString = params.toString();
-    const url = queryString ? `${this.baseUrl}/stats?${queryString}` : `${this.baseUrl}/stats`;
-    
-    return apiClient.get<ApiResponse<SensusStats>>(url);
+      const queryString = this.buildQueryString(params);
+      const url = `/dashboard/stats${queryString}`;
+      
+      // Use direct apiClient for custom endpoints
+      return apiClient.get<ApiResponse<SensusStats>>(url);
+    } catch (error) {
+      return handleServiceError(error, 'Get dashboard stats');
+    }
   }
 
-  // Get sensus data for charts
   async getChartData(filters?: SensusFilter): Promise<ApiResponse<any[]>> {
-    const params = new URLSearchParams();
-    
-    if (filters?.tanggal_mulai) params.append('tanggal_mulai', filters.tanggal_mulai);
-    if (filters?.tanggal_akhir) params.append('tanggal_akhir', filters.tanggal_akhir);
-    if (filters?.bangsal_id) params.append('bangsal_id', filters.bangsal_id.toString());
+    try {
+      const params: Record<string, any> = {};
+      
+      if (filters?.tanggal_mulai) params.tanggal_mulai = filters.tanggal_mulai;
+      if (filters?.tanggal_akhir) params.tanggal_akhir = filters.tanggal_akhir;
+      if (filters?.bangsal_id) params.bangsal_id = filters.bangsal_id.toString();
 
-    const queryString = params.toString();
-    const url = queryString ? `${this.baseUrl}/chart?${queryString}` : `${this.baseUrl}/chart`;
-    
-    return apiClient.get<ApiResponse<any[]>>(url);
+      const queryString = this.buildQueryString(params);
+      const url = `${this.baseUrl}/chart${queryString}`;
+      
+      // Use direct apiClient for custom endpoints  
+      return apiClient.get<ApiResponse<any[]>>(url);
+    } catch (error) {
+      return handleServiceError(error, 'Get chart data');
+    }
   }
 
-  // Export sensus data
-  async exportData(filters?: SensusFilter, format: 'csv' | 'excel' = 'csv'): Promise<Blob> {
-    const params = new URLSearchParams();
-    
-    if (filters?.tanggal_mulai) params.append('tanggal_mulai', filters.tanggal_mulai);
-    if (filters?.tanggal_akhir) params.append('tanggal_akhir', filters.tanggal_akhir);
-    if (filters?.bangsal_id) params.append('bangsal_id', filters.bangsal_id.toString());
-    params.append('format', format);
+  // Export dengan custom filters
+  async exportSensusData(filters?: SensusFilter, format: 'csv' | 'excel' = 'csv'): Promise<Blob> {
+    try {
+      const params: Record<string, any> = {};
+      
+      if (filters?.tanggal_mulai) params.tanggal_mulai = filters.tanggal_mulai;
+      if (filters?.tanggal_akhir) params.tanggal_akhir = filters.tanggal_akhir;
+      if (filters?.bangsal_id) params.bangsal_id = filters.bangsal_id.toString();
 
-    const queryString = params.toString();
-    const url = queryString ? `${this.baseUrl}/export?${queryString}` : `${this.baseUrl}/export`;
-    
-    const response = await apiClient.get(url, {
-      responseType: 'blob'
-    });
-    
-    return response as Blob;
+      return this.exportData('/export', params, format);
+    } catch (error) {
+      handleServiceError(error, 'Export sensus data');
+      throw error;
+    }
   }
 }
 

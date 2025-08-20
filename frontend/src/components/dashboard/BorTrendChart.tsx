@@ -344,7 +344,7 @@ export default function BorTrendChart() {
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-4 h-0.5 bg-amber-500" style={{ borderTop: '2px dashed #f59e0b', backgroundColor: 'transparent' }}></div>
-              <span className="text-gray-600">Prediksi ARIMA</span>
+              <span className="text-gray-600">Prediksi SARIMA</span>
             </div>
           </div>
 
