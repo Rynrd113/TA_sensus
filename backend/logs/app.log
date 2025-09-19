@@ -62,3 +62,15 @@ Traceback (most recent call last):
   File "/Users/mac/Library/Python/3.9/lib/python/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
     version = _bcrypt.__about__.__version__
 AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-19 17:33:09,108 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 17:33:09,108 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-19 18:50:07,264 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 18:50:07,264 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-19 18:50:12,539 - sensus-rs - ERROR - Error getting bangsal list: type object 'Bangsal' has no attribute 'query'
+2025-09-19 18:50:48,070 - sensus-rs - ERROR - Error getting bangsal list: type object 'Bangsal' has no attribute 'query'
+2025-09-19 18:51:04,764 - sensus-rs - ERROR - Error getting bangsal list: type object 'Bangsal' has no attribute 'query'
+2025-09-19 18:51:04,766 - sensus-rs - ERROR - Error getting bangsal list: type object 'Bangsal' has no attribute 'query'
+2025-09-19 18:52:18,368 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 18:52:18,368 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-19 18:53:48,140 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 18:53:48,140 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started

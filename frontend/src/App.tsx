@@ -6,6 +6,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 // Lazy load pages with better chunking
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const BangsalPage = lazy(() => import('./pages/BangsalPage'));
+const SensusPage = lazy(() => import('./pages/SensusPage'));
 const ChartPage = lazy(() => 
   import('./pages/ChartPage').then(module => ({ default: module.default }))
 );
@@ -54,6 +55,11 @@ function App() {
               <Route path="bangsal" element={
                 <Suspense fallback={<LoadingSpinner />}>
                   <BangsalPage />
+                </Suspense>
+              } />
+              <Route path="sensus" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <SensusPage />
                 </Suspense>
               } />
               <Route path="chart" element={

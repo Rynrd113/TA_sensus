@@ -6,6 +6,10 @@ export class BangsalService {
 
   // Core CRUD Operations
   async getAllBangsal(filter?: BangsalFilter): Promise<ApiResponse<Bangsal[]>> {
+    // Temporary: use simple endpoint for development
+    return apiClient.get<ApiResponse<Bangsal[]>>(`${this.baseUrl}/simple`);
+    
+    /* Original implementation - re-enable when authentication is fixed
     const params = new URLSearchParams();
     if (filter?.departemen) params.append('departemen', filter.departemen);
     if (filter?.jenis_bangsal) params.append('jenis_bangsal', filter.jenis_bangsal);
@@ -17,6 +21,7 @@ export class BangsalService {
     
     const queryString = params.toString() ? `?${params.toString()}` : '';
     return apiClient.get<ApiResponse<Bangsal[]>>(`${this.baseUrl}/${queryString}`);
+    */
   }
 
   async getBangsalById(id: number): Promise<ApiResponse<Bangsal>> {

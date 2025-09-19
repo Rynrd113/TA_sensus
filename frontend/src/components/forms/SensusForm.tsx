@@ -74,16 +74,34 @@ const SensusForm: React.FC<SensusFormProps> = ({
     }
   });
 
-  const bangsalOptions = bangsalList.map(bangsal => ({
-    value: bangsal.id,
-    label: bangsal.nama
-  }));
+  const bangsalOptions = bangsalList.length > 0 
+    ? bangsalList.map(bangsal => ({
+        value: bangsal.id,
+        label: bangsal.nama_bangsal
+      }))
+    : [{ value: 1, label: 'Loading...' }];
+
+  // Show loading state if no bangsal data yet
+  if (bangsalList.length === 0) {
+    return (
+      <Card 
+        title="Input Data Sensus Harian"
+        subtitle="Memuat data bangsal..."
+        variant="default"
+        className={className}
+      >
+        <div className="flex justify-center py-8">
+          <div className="animate-spin w-8 h-8 border-4 border-primary-200 border-t-primary-500 rounded-full"></div>
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <Card 
       title="Input Data Sensus Harian"
       subtitle="Masukkan data sensus pasien untuk perhitungan indikator"
-      variant="medical"
+      variant="default"
       className={className}
     >
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -108,7 +126,6 @@ const SensusForm: React.FC<SensusFormProps> = ({
             onChange={handleChange('bangsal_id')}
             options={bangsalOptions}
             error={errors.bangsal_id}
-            variant="medical"
             required
           />
         </div>

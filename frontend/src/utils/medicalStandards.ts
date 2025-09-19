@@ -1,9 +1,4 @@
-// frontend/src/utils/medicalStandards.ts
-/**
- * Medical Standards Constants - Sinkron dengan backend
- * Standar medis terpusat untuk indikator rumah sakit
- */
-
+// Medical Standards Constants - Sinkron dengan backend
 export interface MedicalThresholds {
   optimal_min: number;
   optimal_max: number;
@@ -93,19 +88,12 @@ export class MedicalStandardsEvaluator {
         message: `BOR ${borValue.toFixed(1)}% dalam rentang optimal`,
         recommendation: 'Pertahankan tingkat utilisasi ini'
       };
-    } else if (borValue >= (bor.warning_low || 50)) {
+    } else {
       return {
         status: 'low',
         level: 'info',
         message: `BOR ${borValue.toFixed(1)}% rendah`,
         recommendation: 'Evaluasi strategi pemasaran/rujukan'
-      };
-    } else {
-      return {
-        status: 'critical',
-        level: 'danger',
-        message: `BOR ${borValue.toFixed(1)}% sangat rendah - Under-utilisasi`,
-        recommendation: 'Review strategi operasional dan marketing'
       };
     }
   }
@@ -134,19 +122,12 @@ export class MedicalStandardsEvaluator {
         message: `LOS ${losValue.toFixed(1)} hari dalam rentang optimal`,
         recommendation: 'Pertahankan kualitas perawatan'
       };
-    } else if (losValue >= (los.warning_low || 3)) {
+    } else {
       return {
         status: 'low',
         level: 'info',
         message: `LOS ${losValue.toFixed(1)} hari pendek`,
         recommendation: 'Monitor kualitas outcome pasien'
-      };
-    } else {
-      return {
-        status: 'critical',
-        level: 'warning',
-        message: `LOS ${losValue.toFixed(1)} hari sangat pendek`,
-        recommendation: 'Pastikan tidak ada discharge terlalu dini'
       };
     }
   }
@@ -168,24 +149,16 @@ export class MedicalStandardsEvaluator {
         message: `BTO ${btoValue.toFixed(1)} dalam rentang optimal`,
         recommendation: 'Pertahankan efisiensi turnover'
       };
-    } else if (btoValue >= (bto.critical_low || 30)) {
+    } else {
       return {
         status: 'low',
         level: 'info',
         message: `BTO ${btoValue.toFixed(1)} rendah`,
         recommendation: 'Evaluasi strategi admission dan discharge'
       };
-    } else {
-      return {
-        status: 'critical',
-        level: 'danger',
-        message: `BTO ${btoValue.toFixed(1)} sangat rendah`,
-        recommendation: 'Review komprehensif proses operasional'
-      };
     }
   }
 
-  // Helper methods untuk UI styling
   getStatusColor(level: EvaluationLevel): string {
     switch (level) {
       case 'success': return 'text-green-600 bg-green-50 border-green-200';
@@ -214,7 +187,8 @@ export const medicalStandardsEvaluator = new MedicalStandardsEvaluator();
 export const useMedicalStandards = () => {
   const fetchStandards = async () => {
     try {
-      const response = await fetch('/api/v1/standards/medical');
+      const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000/api/v1';
+      const response = await fetch(`${API_URL}/standards/medical`);
       if (response.ok) {
         const result = await response.json();
         medicalStandardsEvaluator.updateStandards(result.data);

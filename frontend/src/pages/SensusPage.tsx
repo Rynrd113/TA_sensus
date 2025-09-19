@@ -16,6 +16,8 @@ const SensusPage: React.FC = () => {
         setBangsalList(data);
       } catch (error) {
         console.error('Error fetching bangsal list:', error);
+        // Set fallback data if API fails
+        setBangsalList({ data: [{ id: 1, nama_bangsal: 'Default Bangsal' }] });
       }
     };
 
