@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StatCard from "../components/dashboard/StatCard";
+import MedicalIndicatorCard from "../components/dashboard/MedicalIndicatorCard";
+import { useMedicalStandards } from "../utils/medicalStandards";
 import { 
   RefreshIcon,
   TrendingUpIcon,
@@ -38,6 +40,12 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
   const [bulan, setBulan] = useState(1); // Use January since that's where data exists
   const [tahun, setTahun] = useState(2025);
+  const { fetchStandards } = useMedicalStandards();
+
+  // Load medical standards on component mount
+  useEffect(() => {
+    fetchStandards();
+  }, []);
 
   const fetchDashboardData = async () => {
     try {
@@ -257,14 +265,13 @@ export default function DashboardPage() {
 
         {/* Key Performance Indicators Only */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard
+          <MedicalIndicatorCard
             title="BOR Hari Ini"
             value={stats.bor_terkini}
             unit="%"
-            description="Tingkat hunian tempat tidur"
-            variant={getStatusVariant('bor', stats.bor_terkini)}
+            indicatorType="BOR"
             icon={<UsersIcon className="w-5 h-5" />}
-            trend={dashboardData.trend_bor}
+            showRecommendation={true}
           />
           
           <StatCard

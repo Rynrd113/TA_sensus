@@ -11,6 +11,7 @@ from api.v1.prediksi_router import router as prediksi_router
 from api.v1.dashboard_router import router as dashboard_router
 from api.v1.indikator_router import router as indikator_router
 from api.v1.export_router import router as export_router
+from api.v1.standards_router import router as standards_router
 
 # Import untuk database
 from database.engine import engine
@@ -85,6 +86,7 @@ app.include_router(prediksi_router, prefix="/api/v1")
 app.include_router(dashboard_router, prefix="/api/v1")
 app.include_router(indikator_router, prefix="/api/v1")
 app.include_router(export_router, prefix="/api/v1")
+app.include_router(standards_router, prefix="/api/v1")
 
 # Start scheduler for weekly model retraining
 start_scheduler_thread()

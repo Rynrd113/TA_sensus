@@ -1,17 +1,18 @@
 # backend/utils/indikator_calculator.py
 """
 Centralized Indikator Calculator
-Implementasi DRY untuk perhitungan indikator Kemenkes
+Implementasi DRY untuk perhitungan indikator Kemenkes dengan standar terpusat
 """
 from typing import Dict, List, Optional
 from datetime import date
 from models.sensus import SensusHarian
+from core.medical_standards import MedicalStandards
 
 
 class IndikatorCalculator:
     """
     Kelas untuk menghitung semua indikator rawat inap sesuai standar Kemenkes
-    Menerapkan prinsip DRY dan Single Responsibility
+    Menerapkan prinsip DRY dan Single Responsibility dengan standardisasi medis
     """
     
     @staticmethod
@@ -50,10 +51,20 @@ class IndikatorCalculator:
         bor = round((pasien_akhir / tt) * 100, 1)
         
         # LOS - Length of Stay (rata-rata lama dirawat)
-        los = round(hari_rawat / keluar, 1) if keluar > 0 and hari_rawat else 0.0
+        # Improved: Consistent logic untuk LOS calculation
+        if keluar > 0 and hari_rawat is not None:
+            los = round(hari_rawat / keluar, 1)
+        elif keluar > 0:
+            # Estimate hari_rawat if not provided
+            estimated_hari_rawat = (pasien_awal + masuk + keluar) // 2
+            los = round(estimated_hari_rawat / keluar, 1)
+        else:
+            los = 0.0
         
-        # BTO - Bed Turn Over (frekuensi pemakaian tempat tidur)
-        bto = round(keluar / tt, 1)
+        # BTO - Bed Turn Over (frekuensi pemakaian tempat tidur per hari)
+        # Fixed: Konsisten dengan standar medis - normalize ke bulanan
+        bto_harian = keluar / tt if tt > 0 else 0.0
+        bto = round(bto_harian * 30, 1)  # Normalize to monthly rate
         
         # TOI - Turn Over Interval (rata-rata hari kosong tempat tidur)
         tt_kosong = max(0, tt - pasien_akhir)
@@ -75,6 +86,7 @@ class IndikatorCalculator:
     ) -> Dict[str, float]:
         """
         Hitung indikator bulanan (aggregasi dari data harian)
+        Fixed: Consistent calculation logic
         
         Args:
             data_bulanan: List data sensus harian dalam 1 bulan
@@ -88,7 +100,8 @@ class IndikatorCalculator:
             return {"los": 0.0, "bto": 0.0, "toi": 0.0}
         
         total_keluar = sum(d.jml_keluar for d in data_bulanan)
-        total_hari_rawat = sum(d.jml_pasien_akhir for d in data_bulanan)
+        # Fixed: Use hari_rawat if available, else estimate
+        total_hari_rawat = sum(getattr(d, 'hari_rawat', 0) or d.jml_pasien_akhir for d in data_bulanan)
         
         if total_keluar == 0:
             return {"los": 0.0, "bto": 0.0, "toi": 0.0}
@@ -96,8 +109,9 @@ class IndikatorCalculator:
         # LOS = Total hari rawat / Total pasien keluar
         los = round(total_hari_rawat / total_keluar, 1)
         
-        # BTO = Jumlah pasien keluar / (Jumlah TT tersedia / periode)
-        bto = round(total_keluar / (tt_total / periode_hari), 1)
+        # BTO = Fixed formula - Total keluar per bulan / Total TT
+        # Standardized with medical standards
+        bto = round(total_keluar / tt_total * periode_hari, 1)
         
         # TOI = (Periode × TT - Total hari rawat) / Jumlah pasien keluar
         total_tt_hari = periode_hari * tt_total
@@ -133,28 +147,35 @@ class IndikatorCalculator:
     
     @staticmethod
     def generate_peringatan(latest_data: SensusHarian, avg_bor: float) -> List[str]:
-        """Generate peringatan berdasarkan standar Kemenkes"""
+        """Generate peringatan berdasarkan standar medis terpusat"""
         peringatan = []
         
-        # Standar BOR ideal: 60-85%
-        if latest_data.bor > 90:
-            peringatan.append("🚨 BOR > 90% - Kapasitas hampir penuh!")
-        elif latest_data.bor < 60:
-            peringatan.append("⚠️ BOR < 60% - Pemanfaatan rendah")
+        # BOR evaluation dengan standard baru
+        bor_eval = MedicalStandards.evaluate_bor(latest_data.bor)
+        if bor_eval["status"] in ["critical", "critical_low", "warning"]:
+            icon = "🚨" if bor_eval["level"] == "danger" else "⚠️"
+            peringatan.append(f"{icon} {bor_eval['message']}")
         
-        # LOS ideal: 6-9 hari
-        if latest_data.los and latest_data.los > 9:
-            peringatan.append("📊 LOS > 9 hari - Lama rawat tinggi")
-        elif latest_data.los and latest_data.los < 3:
-            peringatan.append("⚡ LOS < 3 hari - Turnover sangat cepat")
+        # LOS evaluation
+        if latest_data.los:
+            los_eval = MedicalStandards.evaluate_los(latest_data.los)
+            if los_eval["status"] in ["critical", "critical_short", "warning"]:
+                icon = "🚨" if los_eval["level"] == "danger" else "⚠️"
+                peringatan.append(f"{icon} {los_eval['message']}")
         
-        # BTO ideal: 40-50 kali/tahun (1-1.5 per hari)
-        if latest_data.bto and latest_data.bto < 1:
-            peringatan.append("📉 BTO rendah - Efisiensi tempat tidur kurang")
-        elif latest_data.bto and latest_data.bto > 2:
-            peringatan.append("📈 BTO tinggi - Turnover sangat aktif")
+        # BTO evaluation
+        if latest_data.bto:
+            bto_eval = MedicalStandards.evaluate_bto(latest_data.bto)
+            if bto_eval["status"] in ["critical_low", "high", "low"]:
+                icon = "🚨" if bto_eval["level"] == "danger" else "📊"
+                peringatan.append(f"{icon} {bto_eval['message']}")
         
         return peringatan
+    
+    @staticmethod
+    def get_medical_standards() -> dict:
+        """Ambil semua medical standards untuk frontend"""
+        return MedicalStandards.get_all_thresholds()
 
 
 # Singleton pattern untuk konsistensi

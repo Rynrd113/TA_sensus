@@ -1,5 +1,6 @@
 // frontend/src/components/dashboard/StatCard.tsx
 import React from 'react';
+import { medicalStandardsEvaluator, EvaluationResult } from '../../utils/medicalStandards';
 
 interface StatCardProps {
   title: string;

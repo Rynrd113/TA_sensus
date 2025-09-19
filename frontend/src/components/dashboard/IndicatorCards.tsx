@@ -22,7 +22,9 @@ import {
   ExclamationTriangleIcon,
   ChartIcon
 } from '../icons';
+import MedicalIndicatorCard from './MedicalIndicatorCard';
 import StatCard from './StatCard';
+import { useMedicalStandards } from '../../utils/medicalStandards';
 
 // Types for better type safety
 interface IndicatorStats {
@@ -150,6 +152,12 @@ const IndicatorCards: React.FC<IndicatorCardsProps> = ({
   const [stats, setStats] = useState<IndicatorStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { fetchStandards } = useMedicalStandards();
+
+  // Load medical standards on mount
+  useEffect(() => {
+    fetchStandards();
+  }, []);
 
   const fetchStats = async () => {
     try {
@@ -326,26 +334,43 @@ const IndicatorCards: React.FC<IndicatorCardsProps> = ({
         variant === 'detailed' ? 'md:grid-cols-2 lg:grid-cols-4' : 
         'md:grid-cols-2 lg:grid-cols-4'
       } gap-6`}>
-        {indicators.map((indicator) => (
-          <StatCard
-            key={indicator.code}
-            title={indicator.name}
-            value={indicator.value}
-            unit={indicator.unit}
-            icon={<indicator.icon className="h-5 w-5" />}
-            subtitle={indicator.subtitle}
-            trend={indicator.trend}
-            className={`${getStatusColor(indicator.evaluation.status)} border-l-4 ${
-              indicator.evaluation.status === 'success' ? 'border-green-500' :
-              indicator.evaluation.status === 'warning' ? 'border-yellow-500' :
-              'border-red-500'
-            }`}
-            footer={
-              variant === 'detailed' || showActions ? (
-                <div className="mt-3 pt-3 border-t border-gray-100">
-                  <p className="text-xs text-gray-600 mb-1">
-                    {indicator.evaluation.message}
-                  </p>
+        {indicators.slice(0, 4).map((indicator) => {
+          // Use MedicalIndicatorCard for the main 4 indicators
+          if (['BOR', 'LOS', 'BTO', 'TOI'].includes(indicator.code)) {
+            return (
+              <MedicalIndicatorCard
+                key={indicator.code}
+                title={indicator.name}
+                value={indicator.value}
+                unit={indicator.unit}
+                indicatorType={indicator.code as 'BOR' | 'LOS' | 'BTO' | 'TOI'}
+                icon={<indicator.icon className="h-5 w-5" />}
+                showRecommendation={variant === 'detailed'}
+              />
+            );
+          }
+          
+          // Fallback to StatCard for other indicators
+          return (
+            <StatCard
+              key={indicator.code}
+              title={indicator.name}
+              value={indicator.value}
+              unit={indicator.unit}
+              icon={<indicator.icon className="h-5 w-5" />}
+              subtitle={indicator.subtitle}
+              trend={indicator.trend}
+              className={`${getStatusColor(indicator.evaluation.status)} border-l-4 ${
+                indicator.evaluation.status === 'success' ? 'border-green-500' :
+                indicator.evaluation.status === 'warning' ? 'border-yellow-500' :
+                'border-red-500'
+              }`}
+              footer={
+                variant === 'detailed' || showActions ? (
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <p className="text-xs text-gray-600 mb-1">
+                      {indicator.evaluation.message}
+                    </p>
                   {showActions && (
                     <p className="text-xs text-blue-600 font-medium">
                       💡 {indicator.evaluation.action}
@@ -354,8 +379,9 @@ const IndicatorCards: React.FC<IndicatorCardsProps> = ({
                 </div>
               ) : undefined
             }
-          />
-        ))}
+            />
+          );
+        })}
       </div>
 
       {/* Summary Message */}
