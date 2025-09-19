@@ -1284,3 +1284,9 @@ FROM sensus_harian ORDER BY sensus_harian.tanggal DESC
 2025-09-19 12:54:14,158 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
 2025-09-19 12:54:34,468 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
 2025-09-19 12:54:34,468 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-19 14:02:53,865 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 14:02:53,865 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-19 14:03:12,042 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 14:03:12,042 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-19 14:06:38,692 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 14:06:38,692 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started

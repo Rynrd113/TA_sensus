@@ -8,15 +8,15 @@ from typing import List, Optional, Dict, Any
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
-from ...database.session import get_db
-from ...services.bangsal_service import BangsalService
-from ...schemas.bangsal import (
+from database.session import get_db
+from services.bangsal_service import BangsalService
+from schemas.bangsal import (
     BangsalCreate, BangsalUpdate, BangsalResponse, BangsalList, BangsalSummary,
     KamarBangsalCreate, KamarBangsalUpdate, KamarBangsalResponse,
     CapacityUpdate, OccupancyStats, BangsalFilter
 )
-from ...core.auth import get_current_user, require_role
-from ...models.user import User
+from core.auth import get_current_user, require_role
+from models.user import User
 
 router = APIRouter(prefix="/bangsal", tags=["Bangsal Management"])
 

@@ -7,14 +7,14 @@ Business logic for bangsal (hospital ward) management
 import json
 from typing import List, Optional, Dict, Any, Tuple
 from sqlalchemy.orm import Session
-from ..repositories.bangsal_repository import BangsalRepository, KamarBangsalRepository
-from ..schemas.bangsal import (
+from repositories.bangsal_repository import BangsalRepository, KamarBangsalRepository
+from schemas.bangsal import (
     BangsalCreate, BangsalUpdate, BangsalResponse, BangsalList, BangsalSummary,
     KamarBangsalCreate, KamarBangsalUpdate, KamarBangsalResponse,
     CapacityUpdate, OccupancyStats, BangsalFilter
 )
-from ..models.bangsal import Bangsal, KamarBangsal
-from ..core.logging_config import logger
+from models.bangsal import Bangsal, KamarBangsal
+from core.logging_config import logger
 
 class BangsalService:
     def __init__(self, db: Session):

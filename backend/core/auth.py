@@ -155,6 +155,11 @@ async def get_current_user_token(credentials: HTTPAuthorizationCredentials = Dep
     
     return payload
 
+# Alias for compatibility
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> dict:
+    """Alias for get_current_user_token for compatibility"""
+    return await get_current_user_token(credentials)
+
 def require_role(required_role: str):
     """Dependency factory for role-based access control"""
     def role_checker(current_user: dict = Depends(get_current_user_token)) -> dict:

@@ -7,9 +7,9 @@ Database operations for bangsal (hospital ward) management
 from typing import List, Optional, Dict, Any
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import and_, or_, desc, asc, func
-from ..models.bangsal import Bangsal, KamarBangsal
-from ..schemas.bangsal import BangsalCreate, BangsalUpdate, KamarBangsalCreate, KamarBangsalUpdate
-from .base_repository import BaseRepository
+from models.bangsal import Bangsal, KamarBangsal
+from schemas.bangsal import BangsalCreate, BangsalUpdate, KamarBangsalCreate, KamarBangsalUpdate
+from repositories.base_repository import BaseRepository
 
 class BangsalRepository(BaseRepository):
     def __init__(self, db: Session):
