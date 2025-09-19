@@ -12,6 +12,7 @@ from api.v1.dashboard_router import router as dashboard_router
 from api.v1.indikator_router import router as indikator_router
 from api.v1.export_router import router as export_router
 from api.v1.standards_router import router as standards_router
+from api.v1.auth_router import router as auth_router
 
 # Import untuk database
 from database.engine import engine
@@ -81,6 +82,7 @@ app.add_middleware(
 )
 
 # Include routers with API v1 prefix
+app.include_router(auth_router, prefix="/api/v1")
 app.include_router(sensus_router, prefix="/api/v1")
 app.include_router(prediksi_router, prefix="/api/v1")
 app.include_router(dashboard_router, prefix="/api/v1")

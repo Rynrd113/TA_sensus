@@ -1,8 +1,6 @@
 # backend/models/sensus.py
 from sqlalchemy import Column, Integer, Date, Float
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
+from .base import Base
 
 class SensusHarian(Base):
     __tablename__ = "sensus_harian"
