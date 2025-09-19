@@ -4,6 +4,8 @@ Script untuk inisialisasi database dan buat contoh data
 """
 from datetime import date, timedelta
 from models.sensus import Base, SensusHarian
+from models.user import User, UserSession, UserLoginLog
+from models.bangsal import Bangsal, KamarBangsal
 from database.engine import engine
 from database.session import SessionLocal
 import random

@@ -13,10 +13,13 @@ from api.v1.indikator_router import router as indikator_router
 from api.v1.export_router import router as export_router
 from api.v1.standards_router import router as standards_router
 from api.v1.auth_router import router as auth_router
+from api.v1.bangsal_router import router as bangsal_router
 
 # Import untuk database
 from database.engine import engine
 from models.sensus import Base
+from models.user import User, UserSession, UserLoginLog  
+from models.bangsal import Bangsal, KamarBangsal
 from core.logging_config import log_error
 from tasks.scheduler import start_scheduler_thread
 
@@ -89,6 +92,7 @@ app.include_router(dashboard_router, prefix="/api/v1")
 app.include_router(indikator_router, prefix="/api/v1")
 app.include_router(export_router, prefix="/api/v1")
 app.include_router(standards_router, prefix="/api/v1")
+app.include_router(bangsal_router, prefix="/api/v1")
 
 # Start scheduler for weekly model retraining
 start_scheduler_thread()

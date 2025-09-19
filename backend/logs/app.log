@@ -55,3 +55,10 @@ Traceback (most recent call last):
   File "/Users/mac/Library/Python/3.9/lib/python/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
     version = _bcrypt.__about__.__version__
 AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-19 13:35:01,436 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-19 13:35:01,436 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-19 13:38:25,603 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/mac/Library/Python/3.9/lib/python/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
