@@ -7,13 +7,21 @@ sqlalchemy>=2.0.0
 psycopg2-binary>=2.9.0        # Untuk PostgreSQL
 alembic>=1.13.0               # Migrasi database
 
-# Machine Learning
+# Machine Learning - Core
 scikit-learn>=1.4.0
 pandas>=2.0.0
 numpy>=1.24.0
 joblib>=1.4.0
-statsmodels>=0.14.0           # Untuk SARIMA
+
+# SARIMA & Time Series (sesuai jurnal penelitian)
+statsmodels>=0.14.0           # SARIMA implementation
+scipy>=1.11.0                 # Statistical functions untuk ADF test
+matplotlib>=3.7.0             # Plotting untuk diagnostik model
+seaborn>=0.12.0              # Statistical plotting
+
+# Export & File Processing
 openpyxl>=3.1.0               # Untuk export Excel
+xlsxwriter>=3.1.0             # Advanced Excel formatting
 
 # Utility
 python-dotenv>=1.0.0          # Untuk .env
@@ -29,3 +37,7 @@ httpx>=0.25.0                 # Untuk async test client
 
 # Task Scheduling
 schedule>=1.2.0               # Background scheduler untuk update model
+
+# Additional dependencies for SARIMA model (Box-Jenkins methodology)
+arch>=5.5.0                   # ARCH/GARCH models (optional)
+pmdarima>=2.0.4               # Auto SARIMA parameter selection (optional alternative)

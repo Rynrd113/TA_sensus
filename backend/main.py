@@ -14,6 +14,7 @@ from api.v1.export_router import router as export_router
 from api.v1.standards_router import router as standards_router
 from api.v1.auth_router import router as auth_router
 from api.v1.bangsal_router import router as bangsal_router
+from api.v1.sarima_router import router as sarima_router  # New SARIMA router
 
 # Import untuk database
 from database.engine import engine
@@ -27,9 +28,9 @@ from tasks.scheduler import start_scheduler_thread
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="Sensus Harian Rawat Inap", 
+    title="Sensus Harian Rawat Inap - SARIMA Prediction System", 
     version="1.0",
-    description="API untuk manajemen sensus harian rumah sakit dengan prediksi BOR"
+    description="API untuk manajemen sensus harian rumah sakit dengan prediksi BOR menggunakan model SARIMA (Sesuai jurnal penelitian)"
 )
 
 # Global exception handlers
@@ -93,10 +94,21 @@ app.include_router(indikator_router, prefix="/api/v1")
 app.include_router(export_router, prefix="/api/v1")
 app.include_router(standards_router, prefix="/api/v1")
 app.include_router(bangsal_router, prefix="/api/v1")
+app.include_router(sarima_router, prefix="/api/v1")  # SARIMA prediction endpoints
 
 # Start scheduler for weekly model retraining
 start_scheduler_thread()
 
 @app.get("/")
 def root():
-    return {"message": "API Sensus Harian Rawat Inap Berjalan!"}
+    return {
+        "message": "SARIMA Prediction API - Sensus Harian Rawat Inap", 
+        "version": "1.0",
+        "description": "Peramalan Indikator Rumah Sakit Berbasis Sensus Harian Rawat Inap dengan Model SARIMA",
+        "endpoints": {
+            "sarima_training": "/api/v1/sarima/train",
+            "sarima_prediction": "/api/v1/sarima/predict", 
+            "sarima_diagnostics": "/api/v1/sarima/diagnostics",
+            "documentation": "/docs"
+        }
+    }

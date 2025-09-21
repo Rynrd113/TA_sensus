@@ -74,3 +74,9 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-09-19 18:52:18,368 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
 2025-09-19 18:53:48,140 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
 2025-09-19 18:53:48,140 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-21 11:02:40,918 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-21 11:02:40,918 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-21 11:08:18,539 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-21 11:08:18,539 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-09-21 11:08:33,072 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-21 11:08:33,072 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started

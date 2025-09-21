@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StatCard from "../components/dashboard/StatCard";
 import MedicalIndicatorCard from "../components/dashboard/MedicalIndicatorCard";
+import SARIMAChart from "../components/dashboard/SARIMAChart";
 import { useMedicalStandards } from "../utils/medicalStandards";
 import { 
   RefreshIcon,
@@ -347,6 +348,33 @@ export default function DashboardPage() {
               </div>
             </div>
           </Link>
+        </div>
+
+        {/* SARIMA Prediction Section - Sesuai Jurnal Penelitian */}
+        <div className="mb-8">
+          <div className="bg-white rounded-lg border border-primary-200 p-6 mb-4">
+            <h2 className="text-xl font-semibold text-vmeds-900 mb-2 flex items-center gap-2">
+              🧠 SARIMA Prediction System
+            </h2>
+            <p className="text-vmeds-600 text-sm mb-4">
+              Implementasi model penelitian: "Peramalan Indikator Rumah Sakit Berbasis Sensus Harian Rawat Inap dengan Model SARIMA"
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                <div className="font-medium text-blue-800">📊 Metodologi</div>
+                <div className="text-blue-700">Box-Jenkins SARIMA</div>
+              </div>
+              <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                <div className="font-medium text-green-800">🎯 Target Akurasi</div>
+                <div className="text-green-700">MAPE &lt; 10%</div>
+              </div>
+              <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                <div className="font-medium text-purple-800">📈 Prediksi</div>
+                <div className="text-purple-700">BOR 7 hari ke depan</div>
+              </div>
+            </div>
+          </div>
+          <SARIMAChart />
         </div>
 
         {/* Medical Standards Reference */}
