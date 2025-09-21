@@ -102,9 +102,15 @@ const SARIMAChart: React.FC = () => {
   const checkModelStatus = async () => {
     try {
       const response = await apiClient.get('/sarima/status') as any;
-      setModelTrained(response.data.model_trained);
+      if (response && typeof response.model_trained === 'boolean') {
+        setModelTrained(response.model_trained);
+      } else {
+        console.warn('Invalid response from /sarima/status:', response);
+        setModelTrained(false);
+      }
     } catch (error) {
       console.error('Error checking model status:', error);
+      setModelTrained(false);
     }
   };
 
@@ -119,11 +125,11 @@ const SARIMAChart: React.FC = () => {
         target_column: 'bor'
       }) as any;
       
-      setTrainingResults(response.data);
+      setTrainingResults(response);
       setModelTrained(true);
       
       // Auto predict after training if successful
-      if (response.data.journal_compliance?.meets_mape_criteria) {
+      if (response.journal_compliance?.meets_mape_criteria) {
         await generatePrediction();
       }
       
@@ -147,7 +153,7 @@ const SARIMAChart: React.FC = () => {
         }
       }) as any;
       
-      setPrediction(response.data);
+      setPrediction(response);
       
     } catch (error: any) {
       setError(error.response?.data?.detail || 'Error generating prediction');

@@ -152,11 +152,10 @@ async def train_sarima_model(
 async def predict_bor(
     days_ahead: int = Query(7, ge=1, le=30, description="Jumlah hari prediksi (1-30)"),
     include_confidence: bool = Query(True, description="Include confidence intervals"),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    db: Session = Depends(get_db)
 ) -> Dict[str, Any]:
     """
-    Prediksi BOR menggunakan model SARIMA yang sudah di-training
+    Prediksi BOR menggunakan model SARIMA yang sudah di-training - Public endpoint
     
     Mengembalikan:
     - Prediksi BOR harian
@@ -165,7 +164,7 @@ async def predict_bor(
     - Warning untuk BOR tinggi/rendah
     """
     try:
-        logger.info(f"BOR prediction requested by {current_user.username} for {days_ahead} days")
+        logger.info(f"BOR prediction requested for {days_ahead} days")
         
         # Check if model is trained
         if not sarima_predictor.fitted_model:
@@ -379,11 +378,9 @@ async def retrain_model(
         )
 
 @router.get("/status")
-async def get_model_status(
-    current_user: User = Depends(get_current_user)
-) -> Dict[str, Any]:
+async def get_model_status() -> Dict[str, Any]:
     """
-    Status model SARIMA saat ini
+    Status model SARIMA saat ini - Public endpoint untuk status check
     """
     try:
         is_trained = sarima_predictor.fitted_model is not None

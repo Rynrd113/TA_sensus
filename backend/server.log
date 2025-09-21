@@ -1,32 +1,118 @@
-2025-09-19 13:35:01,436 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
-2025-09-19 13:35:01,436 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
-INFO:     Started server process [37465]
+INFO:     Will watch for changes in these directories: ['/Users/mac/Desktop/TA_sensus/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [15556] using WatchFiles
+/Users/mac/Library/Python/3.9/lib/python/site-packages/pydantic/_internal/_config.py:373: UserWarning: Valid config keys have changed in V2:
+* 'schema_extra' has been renamed to 'json_schema_extra'
+  warnings.warn(message, UserWarning)
+2025-09-21 11:25:30,691 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-21 11:25:30,691 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+INFO:     Started server process [15599]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     127.0.0.1:49438 - "GET / HTTP/1.1" 200 OK
-2025-09-19 13:38:25,603 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
-Traceback (most recent call last):
-  File "/Users/mac/Library/Python/3.9/lib/python/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
-    version = _bcrypt.__about__.__version__
-AttributeError: module 'bcrypt' has no attribute '__about__'
-INFO:     127.0.0.1:49482 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49568 - "GET /api/ HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49570 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49572 - "GET /api/v1/bangsal HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49574 - "GET /api/v1/bangsal/1 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49576 - "GET /api/v1/bangsal/kode/MW-001 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49578 - "GET /api/v1/bangsal/statistics/occupancy HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49580 - "GET /api/v1/bangsal/emergency/ready HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49582 - "GET /api/v1/bangsal/available/beds?min_beds=5 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49584 - "GET /api/v1/bangsal/statistics/department HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49586 - "GET /api/v1/bangsal/1/rooms HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49588 - "PUT /api/v1/bangsal/1/capacity HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49590 - "GET /api/v1/bangsal?search=ICU HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49592 - "GET /api/v1/bangsal?jenis_bangsal=ICU HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49594 - "GET /api/v1/bangsal/types/jenis HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49596 - "POST /api/v1/bangsal/1/validate HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54325 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54471 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54471 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54473 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54473 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54473 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54471 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54475 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54475 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54555 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54475 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54475 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54555 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54557 - "OPTIONS /api/v1/sarima/train HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54557 - "POST /api/v1/sarima/train HTTP/1.1" 403 Forbidden
+INFO:     127.0.0.1:54744 - "GET /api/v1/sensus/?limit=21 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54744 - "GET /api/v1/sensus/?limit=21 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54744 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54760 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54744 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54759 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54744 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54760 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54760 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54762 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54762 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54803 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54803 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54803 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54803 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'api/v1/sarima_router.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [37465]
+INFO:     Finished server process [15599]
+/Users/mac/Library/Python/3.9/lib/python/site-packages/pydantic/_internal/_config.py:373: UserWarning: Valid config keys have changed in V2:
+* 'schema_extra' has been renamed to 'json_schema_extra'
+  warnings.warn(message, UserWarning)
+2025-09-21 11:26:57,346 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-09-21 11:26:57,346 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+INFO:     Started server process [16092]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:55024 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55026 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55142 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55144 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55225 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55227 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55299 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55301 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55398 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55488 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55687 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55687 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55688 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55688 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55688 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55688 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55690 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55690 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55692 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55690 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55690 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55692 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55694 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55694 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55738 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55694 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55694 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55738 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57529 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57530 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57527 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57527 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57529 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57529 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57529 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57527 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57530 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57530 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57540 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57542 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57539 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57540 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57542 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57540 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57540 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57540 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57540 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57532 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57627 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57532 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57532 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57656 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57656 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57656 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57656 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57676 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57676 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57678 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57676 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57676 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57678 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
