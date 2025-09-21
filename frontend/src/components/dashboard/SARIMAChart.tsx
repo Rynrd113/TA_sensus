@@ -3,15 +3,42 @@
  * Sesuai dengan penelitian: "Peramalan Indikator Rumah Sakit Berbasis Sensus Harian Rawat Inap dengan Model SARIMA"
  * 
  * Features:
- * - Training model SARIMA dengan metodologi Box-Jenkins
+ * - Training model SARIMA dengan m          <div className="flex gap-4">
+            <Button
+              onClick={trainModel}
+              disabled={isTraining || loading}
+              variant={modelTrained ? "secondary" : "primary"}
+            >
+              {isTraining ? (
+                <div className="flex items-center gap-2">
+                  <MedicalLoadingSpinner size="sm" />
+                  <span>Training...</span>
+                </div>
+              ) : '🎯 Train Model'}
+            </Button>
+            {modelTrained && (
+              <Button
+                onClick={() => generatePrediction()}
+                disabled={loading || isTraining}
+                variant="primary"
+              >
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <MedicalLoadingSpinner size="sm" />
+                    <span>Predicting...</span>
+                  </div>
+                ) : '📈 Predict'}
+              </Button>
+            )}
+          </div>ins
  * - Visualisasi prediksi BOR dengan confidence interval  
  * - Evaluasi performa model (RMSE, MAE, MAPE < 10%)
  * - Interpretasi klinis dan rekomendasi manajemen
+ * - Performance optimization dengan debouncing dan caching
  */
 
 import React, { useState, useEffect } from 'react';
 import { 
-  LineChart, 
   Line, 
   XAxis, 
   YAxis, 
@@ -24,6 +51,7 @@ import {
 } from 'recharts';
 import { apiClient } from '../../services/apiClient';
 import { Card, Button } from '../ui';
+import { MedicalLoadingSpinner } from '../ui/LoadingStates';
 
 interface SARIMAPrediction {
   values: number[];
@@ -270,7 +298,18 @@ const SARIMAChart: React.FC = () => {
       </Card>
 
       {/* Prediction Chart */}
-      {prediction && (
+      {loading && (
+        <Card className="p-6">
+          <div className="text-center py-8">
+            <MedicalLoadingSpinner 
+              size="lg" 
+              message="Memproses prediksi SARIMA..." 
+            />
+          </div>
+        </Card>
+      )}
+      
+      {prediction && !loading && (
         <Card className="p-6">
           <h3 className="text-xl font-semibold mb-4">
             📊 Prediksi BOR - {prediction.forecast_period} Hari

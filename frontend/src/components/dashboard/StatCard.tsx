@@ -1,6 +1,5 @@
 // frontend/src/components/dashboard/StatCard.tsx
 import React from 'react';
-import { medicalStandardsEvaluator, EvaluationResult } from '../../utils/medicalStandards';
 
 interface StatCardProps {
   title: string;
@@ -16,7 +15,7 @@ interface StatCardProps {
   footer?: React.ReactNode;
 }
 
-const StatCard: React.FC<StatCardProps> = ({
+const StatCard: React.FC<StatCardProps> = React.memo(({
   title,
   value,
   unit = '',
@@ -128,6 +127,6 @@ const StatCard: React.FC<StatCardProps> = ({
       {footer && footer}
     </div>
   );
-};
+});
 
 export default StatCard;

@@ -12,7 +12,7 @@ interface MedicalIndicatorCardProps {
   showRecommendation?: boolean;
 }
 
-const MedicalIndicatorCard: React.FC<MedicalIndicatorCardProps> = ({
+const MedicalIndicatorCard: React.FC<MedicalIndicatorCardProps> = React.memo(({
   title,
   value,
   unit = '',
@@ -94,6 +94,6 @@ const MedicalIndicatorCard: React.FC<MedicalIndicatorCardProps> = ({
       )}
     </div>
   );
-};
+});
 
 export default MedicalIndicatorCard;

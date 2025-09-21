@@ -9,6 +9,10 @@ export { default as Card } from './Card';             // UNIFIED card system
 export { default as Input, Select } from './Input';   // UNIFIED input system
 export { default as StatCard } from '../dashboard/StatCard';     // UNIFIED stat card system
 
+// ===== ENHANCED UI COMPONENTS =====
+export * from './LoadingStates';      // Enhanced loading states
+export * from './ResponsiveLayout';   // Responsive layout system
+
 // ===== SPECIALIZED COMPONENTS =====
 export { default as AlertCard } from './AlertCard';   // Alert notifications
 export { default as ExportButton } from './ExportButton'; // Export functionality

@@ -116,3 +116,145 @@ INFO:     127.0.0.1:57678 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP
 INFO:     127.0.0.1:57676 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:57676 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
 INFO:     127.0.0.1:57678 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59119 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59122 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59120 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59124 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59120 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59120 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59124 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59122 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59181 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59181 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59182 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59184 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59187 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59182 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59187 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59188 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59187 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59181 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59187 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59188 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59182 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59188 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59181 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59188 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59181 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59182 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59188 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59188 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59277 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59281 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59278 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59282 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59278 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59282 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59277 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59282 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59336 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59338 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59340 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59342 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59338 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59336 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59342 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59342 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59623 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59625 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61211 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61212 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61209 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61209 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61219 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61220 - "OPTIONS /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61216 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61211 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61219 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61220 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61211 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61219 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61211 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61209 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61212 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61212 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61219 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61220 - "OPTIONS /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61220 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61219 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63598 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63600 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63602 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63604 - "POST /api/v1/sarima/train HTTP/1.1" 403 Forbidden
+2025-09-21 12:27:33,040 - api.v1.sarima_router - INFO - BOR prediction requested for 7 days
+INFO:     127.0.0.1:63606 - "GET /api/v1/sarima/predict?days_ahead=7&include_confidence=true HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:63608 - "GET /api/v1/sensus/?limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63612 - "OPTIONS /api/v1/dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63614 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63616 - "GET /api/v1/nonexistent HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:63812 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63812 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63814 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63814 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63814 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63814 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63816 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63816 - "GET /api/v1/standards/medical HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63818 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63816 - "GET /api/v1/dashboard/stats?bulan=1&tahun=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63816 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63818 - "GET /api/v1/sarima/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64255 - "POST /api/v1/sarima/train HTTP/1.1" 403 Forbidden
+INFO:     127.0.0.1:65144 - "POST /api/v1/sarima/train HTTP/1.1" 403 Forbidden
+WARNING:  WatchFiles detected changes in 'api/v1/sarima_router.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [16092]
+Process SpawnProcess-3:
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/mac/Library/Python/3.9/lib/python/site-packages/uvicorn/_subprocess.py", line 70, in subprocess_started
+    sys.stdin = os.fdopen(stdin_fileno)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/os.py", line 1023, in fdopen
+    return io.open(fd, *args, **kwargs)
+OSError: [Errno 9] Bad file descriptor
+WARNING:  WatchFiles detected changes in 'api/v1/sarima_router.py'. Reloading...
+Process SpawnProcess-4:
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/mac/Library/Python/3.9/lib/python/site-packages/uvicorn/_subprocess.py", line 70, in subprocess_started
+    sys.stdin = os.fdopen(stdin_fileno)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/os.py", line 1023, in fdopen
+    return io.open(fd, *args, **kwargs)
+OSError: [Errno 9] Bad file descriptor
+WARNING:  WatchFiles detected changes in 'api/v1/sarima_router.py'. Reloading...
+Process SpawnProcess-5:
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/mac/Library/Python/3.9/lib/python/site-packages/uvicorn/_subprocess.py", line 70, in subprocess_started
+    sys.stdin = os.fdopen(stdin_fileno)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/os.py", line 1023, in fdopen
+    return io.open(fd, *args, **kwargs)
+OSError: [Errno 9] Bad file descriptor
+WARNING:  WatchFiles detected changes in 'test_bangsal_api.py'. Reloading...
+Process SpawnProcess-6:
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/mac/Library/Python/3.9/lib/python/site-packages/uvicorn/_subprocess.py", line 70, in subprocess_started
+    sys.stdin = os.fdopen(stdin_fileno)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/os.py", line 1023, in fdopen
+    return io.open(fd, *args, **kwargs)
+OSError: [Errno 9] Bad file descriptor

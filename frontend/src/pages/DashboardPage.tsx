@@ -1,5 +1,5 @@
 // Simplified Dashboard - Overview Only
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import StatCard from "../components/dashboard/StatCard";
 import MedicalIndicatorCard from "../components/dashboard/MedicalIndicatorCard";
@@ -14,6 +14,19 @@ import {
   ScaleIcon,
   CalendarIcon
 } from "../components/icons";
+
+// Enhanced UI Components
+import { 
+  MedicalLoadingSpinner, 
+  MedicalSkeleton, 
+  MedicalErrorState,
+  MedicalProgressBar 
+} from "../components/ui/LoadingStates";
+import { 
+  ResponsiveGrid, 
+  ResponsiveContainer, 
+  ResponsiveCard
+} from "../components/ui/ResponsiveLayout";
 
 interface DashboardStats {
   stats: {
@@ -48,7 +61,7 @@ export default function DashboardPage() {
     fetchStandards();
   }, []);
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
       setLoading(true);
       console.log('Fetching dashboard data...', { bulan, tahun });
@@ -94,15 +107,29 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [bulan, tahun]);
 
   useEffect(() => {
     fetchDashboardData();
   }, [bulan, tahun]);
 
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     fetchDashboardData();
-  };
+  }, [fetchDashboardData]);
+
+  // Memoized computed values untuk performa yang lebih baik
+  const computedStats = useMemo(() => {
+    if (!dashboardData?.stats) return null;
+
+    const { stats } = dashboardData;
+    return {
+      borStatus: (stats.bor_terkini >= 60 && stats.bor_terkini <= 85 ? 'success' : 
+                 stats.bor_terkini > 85 ? 'critical' : 'warning') as 'success' | 'critical' | 'warning',
+      capacityStatus: (stats.kapasitas_kosong < 10 ? 'warning' : 'success') as 'warning' | 'success',
+      isHighRisk: stats.bor_terkini > 90,
+      isLowUtilization: stats.bor_terkini < 40,
+    };
+  }, [dashboardData?.stats]);
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
@@ -117,75 +144,61 @@ export default function DashboardPage() {
     }
   };
 
-  const getStatusVariant = (type: string, value: number) => {
-    switch (type) {
-      case 'bor':
-        if (value >= 60 && value <= 85) return 'success';
-        if (value > 85) return 'critical';
-        return 'warning';
-      case 'los':
-        if (value >= 6 && value <= 9) return 'success';
-        if (value > 9) return 'critical';
-        return 'default';
-      case 'bto':
-        if (value >= 3 && value <= 5) return 'success';
-        return 'default';
-      case 'toi':
-        if (value >= 1 && value <= 3) return 'success';
-        return 'default';
-      default:
-        return 'default';
-    }
-  };
-
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 p-4 lg:p-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header Skeleton */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-            <div className="animate-pulse">
-              <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-            </div>
-          </div>
-          
-          {/* Cards Skeleton */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="animate-pulse">
-                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
-                  <div className="h-8 bg-gray-200 rounded w-1/3 mb-2"></div>
-                  <div className="h-3 bg-gray-200 rounded w-2/3"></div>
-                </div>
+      <div className="min-h-screen bg-primary-50">
+        <ResponsiveContainer maxWidth="7xl" padding="lg">
+          {/* Enhanced Header Skeleton */}
+          <ResponsiveCard variant="elevated" className="mb-6">
+            <MedicalSkeleton variant="text" className="mb-4" />
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+              <MedicalSkeleton variant="text" />
+              <div className="flex gap-3">
+                <div className="h-10 bg-gray-200 rounded w-24 animate-pulse"></div>
+                <div className="h-10 bg-gray-200 rounded w-20 animate-pulse"></div>
+                <div className="h-10 bg-gray-200 rounded w-24 animate-pulse"></div>
               </div>
-            ))}
+            </div>
+          </ResponsiveCard>
+          
+          {/* Enhanced Cards Skeleton */}
+          <ResponsiveGrid cols={{ xs: 1, sm: 2, lg: 4 }} gap={6} className="mb-8">
+            <MedicalSkeleton variant="card" count={4} />
+          </ResponsiveGrid>
+
+          {/* Charts Skeleton */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <MedicalSkeleton variant="chart" count={2} />
           </div>
-        </div>
+
+          {/* Loading Progress */}
+          <ResponsiveCard variant="filled" className="text-center">
+            <MedicalLoadingSpinner size="lg" message="Memuat dashboard rumah sakit..." />
+            <MedicalProgressBar 
+              percentage={75} 
+              label="Loading Dashboard Data" 
+              variant="primary"
+              className="mt-4 max-w-md mx-auto"
+            />
+          </ResponsiveCard>
+        </ResponsiveContainer>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-primary-50 p-4 lg:p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-lg border border-primary-200 p-8 text-center">
-            <svg className="w-16 h-16 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <h3 className="text-lg font-semibold text-vmeds-900 mb-2">Error Loading Dashboard</h3>
-            <p className="text-vmeds-600 mb-4">{error}</p>
-            <button 
-              onClick={handleRefresh} 
-              className="inline-flex items-center px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
-            >
-              <RefreshIcon className="w-4 h-4 mr-2" />
-              Try Again
-            </button>
-          </div>
-        </div>
+      <div className="min-h-screen bg-primary-50">
+        <ResponsiveContainer maxWidth="7xl" padding="lg">
+          <MedicalErrorState
+            title="Error Loading Dashboard"
+            message={`Tidak dapat memuat data dashboard: ${error}`}
+            onRetry={handleRefresh}
+            retryText="Coba Lagi"
+            variant="error"
+            className="max-w-2xl mx-auto mt-20"
+          />
+        </ResponsiveContainer>
       </div>
     );
   }
@@ -197,10 +210,10 @@ export default function DashboardPage() {
   const { stats } = dashboardData;
 
   return (
-    <div className="min-h-screen bg-primary-50 p-4 lg:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-primary-50">
+      <ResponsiveContainer maxWidth="7xl" padding="lg">
         {/* Simplified Header */}
-        <div className="bg-white rounded-lg border border-primary-200 p-6 mb-6 shadow-sm">
+        <ResponsiveCard variant="elevated" className="mb-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
             <div className="mb-4 lg:mb-0">
               <h1 className="text-2xl lg:text-3xl font-bold text-vmeds-900 mb-2">
@@ -245,12 +258,13 @@ export default function DashboardPage() {
               <button 
                 onClick={handleRefresh} 
                 className="p-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                title="Refresh Data"
               >
                 <RefreshIcon className="w-4 h-4" />
               </button>
             </div>
           </div>
-        </div>
+        </ResponsiveCard>
 
         {/* Alert Cards */}
         {dashboardData.peringatan && dashboardData.peringatan.length > 0 && (
@@ -265,7 +279,7 @@ export default function DashboardPage() {
         )}
 
         {/* Key Performance Indicators Only */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <ResponsiveGrid cols={{ xs: 1, sm: 2, lg: 4 }} gap={6} className="mb-8">
           <MedicalIndicatorCard
             title="BOR Hari Ini"
             value={stats.bor_terkini}
@@ -288,7 +302,7 @@ export default function DashboardPage() {
             value={stats.kapasitas_kosong}
             unit="bed"
             description="Tempat tidur tersedia"
-            variant={stats.kapasitas_kosong < 10 ? 'warning' : 'success'}
+            variant={computedStats?.capacityStatus || 'default'}
             icon={<ScaleIcon className="w-5 h-5" />}
           />
           
@@ -300,10 +314,10 @@ export default function DashboardPage() {
             variant="default"
             icon={<CalendarIcon className="w-5 h-5" />}
           />
-        </div>
+        </ResponsiveGrid>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <ResponsiveGrid cols={{ xs: 1, md: 3 }} gap={6} className="mb-8">
           <Link 
             to="/indikator-lengkap" 
             className="bg-white rounded-lg border border-primary-200 p-6 hover:border-primary-300 hover:shadow-md transition-all duration-200"
@@ -348,7 +362,7 @@ export default function DashboardPage() {
               </div>
             </div>
           </Link>
-        </div>
+        </ResponsiveGrid>
 
         {/* SARIMA Prediction Section - Sesuai Jurnal Penelitian */}
         <div className="mb-8">
@@ -378,9 +392,9 @@ export default function DashboardPage() {
         </div>
 
         {/* Medical Standards Reference */}
-        <div className="bg-white rounded-lg border border-primary-200 p-6">
+        <ResponsiveCard variant="elevated" className="mb-6">
           <h2 className="text-lg font-semibold text-vmeds-900 mb-4">Standar Indikator Kemenkes RI</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ResponsiveGrid cols={{ xs: 1, sm: 2, lg: 4 }} gap={4}>
             <div className="bg-primary-50 rounded-lg p-4 border border-primary-200">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold text-vmeds-900">BOR</h4>
@@ -413,9 +427,9 @@ export default function DashboardPage() {
               <p className="text-sm text-vmeds-600 mb-1">Target: 1-3 hari</p>
               <p className="text-xs text-vmeds-500">Turn Over Interval</p>
             </div>
-          </div>
-        </div>
-      </div>
+          </ResponsiveGrid>
+        </ResponsiveCard>
+      </ResponsiveContainer>
     </div>
   );
 }

@@ -32,8 +32,7 @@ router = APIRouter(prefix="/sarima", tags=["SARIMA Prediction"])
 @router.post("/train", response_model=Dict[str, Any])
 async def train_sarima_model(
     training_request: SARIMATrainingRequest = Body(...),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    db: Session = Depends(get_db)
 ) -> Dict[str, Any]:
     """
     Training model SARIMA sesuai metodologi Box-Jenkins
@@ -47,7 +46,7 @@ async def train_sarima_model(
     6. Evaluasi performa (RMSE, MAE, MAPE)
     """
     try:
-        logger.info(f"Starting SARIMA training requested by user {current_user.username}")
+        logger.info(f"Starting SARIMA training for public access")
         
         # Validate training parameters
         days_back = training_request.days_back or 90
