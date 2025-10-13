@@ -6,3 +6,7 @@
 2025-10-13 11:55:01,362 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
 2025-10-13 12:05:25,975 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
 2025-10-13 12:05:25,975 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-10-13 12:25:27,456 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-10-13 12:25:27,456 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-10-13 12:29:41,929 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-10-13 12:29:41,930 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
