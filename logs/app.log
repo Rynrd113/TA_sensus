@@ -1,0 +1,8 @@
+2025-10-13 11:46:49,470 - matplotlib.font_manager - WARNING - Matplotlib is building the font cache; this may take a moment.
+2025-10-13 11:46:50,319 - matplotlib.font_manager - INFO - generated new fontManager
+2025-10-13 11:46:51,530 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-10-13 11:46:51,530 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-10-13 11:55:01,362 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-10-13 11:55:01,362 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started
+2025-10-13 12:05:25,975 - sensus-rs - ERROR - ERROR - SCHEDULER: Scheduler started - Weekly SARIMA retrain scheduled for Sunday 02:00
+2025-10-13 12:05:25,975 - sensus-rs - ERROR - ERROR - SCHEDULER: Background scheduler thread started

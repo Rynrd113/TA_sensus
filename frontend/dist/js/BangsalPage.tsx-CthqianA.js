@@ -1,1 +1,0 @@
-import{j as a}from"./chunk-DywYPL-g.js";import"./chunk-DM_ejLFS.js";function n(){return a.jsxs("div",{className:"p-6",children:[a.jsx("h1",{className:"text-2xl font-bold mb-4",children:"Manajemen Bangsal"}),a.jsx("p",{className:"text-gray-600",children:"Halaman manajemen bangsal sedang dalam pengembangan."})]})}export{n as default};

@@ -1,0 +1,112 @@
+{
+  "training_timestamp": "2025-10-13T12:10:35.871629",
+  "model_info": {
+    "order": [
+      2,
+      0,
+      1
+    ],
+    "seasonal_order": [
+      2,
+      0,
+      0,
+      7
+    ],
+    "model_formula": "SARIMA(2, 0, 1)x(2, 0, 0, 7)"
+  },
+  "data_info": {
+    "total_data_points": 26,
+    "training_points": 20,
+    "testing_points": 6,
+    "date_range": {
+      "start": "2025-07-01T00:00:00",
+      "end": "2025-07-26T00:00:00"
+    }
+  },
+  "model_performance": {
+    "rmse": 7.050102572881391,
+    "mae": 6.353407374605915,
+    "mape": 7.108995284448041,
+    "mse": 49.703946288148806,
+    "r_squared": -6.988134224881057,
+    "n_test_points": 6
+  },
+  "model_statistics": {
+    "aic": -37.787093447870454,
+    "bic": -41.46932728115111,
+    "log_likelihood": 24.893546723935227,
+    "converged": true
+  },
+  "configuration": {
+    "database": {
+      "path": "../db/sensus.db",
+      "table": "sensus_harian",
+      "date_column": "tanggal",
+      "target_column": "bor"
+    },
+    "data": {
+      "train_test_split": 0.8,
+      "outlier_method": "iqr",
+      "missing_value_strategy": "forward_fill",
+      "min_data_points": 25
+    },
+    "sarima": {
+      "p_range": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "d_range": [
+        0,
+        1,
+        2
+      ],
+      "q_range": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "P_range": [
+        0,
+        1,
+        2
+      ],
+      "D_range": [
+        0,
+        1
+      ],
+      "Q_range": [
+        0,
+        1,
+        2
+      ],
+      "seasonal_periods": [
+        7,
+        30
+      ],
+      "method": "lbfgs",
+      "maxiter": 1000,
+      "enforce_stationarity": false,
+      "enforce_invertibility": false
+    },
+    "performance": {
+      "target_mape": 10.0,
+      "target_rmse": 5.0,
+      "target_mae": 4.0
+    },
+    "output": {
+      "model_file": "sarima_model.pkl",
+      "log_file": "training_log.json",
+      "plots_enabled": true,
+      "verbose": true
+    },
+    "model_selection": {
+      "primary_metric": "aic",
+      "secondary_metric": "bic",
+      "validate_residuals": true,
+      "ljung_box_alpha": 0.05
+    }
+  }
+}
