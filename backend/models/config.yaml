@@ -15,24 +15,24 @@ data:
   missing_value_strategy: "forward_fill"
   min_data_points: 25  # Minimum data points required
 
-# SARIMA Parameters for Grid Search
+# SARIMA Parameters for Grid Search (OPTIMIZED for large dataset)
 sarima:
-  # Non-seasonal parameters (p,d,q)
-  p_range: [0, 1, 2, 3]  # AutoRegressive order
-  d_range: [0, 1, 2]     # Differencing order
-  q_range: [0, 1, 2, 3]  # Moving Average order
+  # Non-seasonal parameters (p,d,q) - REDUCED for speed
+  p_range: [0, 1, 2]     # AutoRegressive order
+  d_range: [0, 1]        # Differencing order (most data stationary/need 1 diff)
+  q_range: [0, 1, 2]     # Moving Average order
   
-  # Seasonal parameters (P,D,Q,s)
-  P_range: [0, 1, 2]     # Seasonal AutoRegressive order
-  D_range: [0, 1]        # Seasonal Differencing order
-  Q_range: [0, 1, 2]     # Seasonal Moving Average order
-  seasonal_periods: [7, 30]  # Weekly (7) and Monthly (30) patterns
+  # Seasonal parameters (P,D,Q,s) - FOCUSED on weekly pattern
+  P_range: [0, 1]        # Seasonal AutoRegressive order
+  D_range: [0]           # Seasonal Differencing order (usually 0)
+  Q_range: [0, 1]        # Seasonal Moving Average order
+  seasonal_periods: [7]  # Weekly (7) pattern only - most relevant for hospital
   
-  # Model fitting parameters
+  # Model fitting parameters - OPTIMIZED for speed
   method: "lbfgs"        # Optimization method
-  maxiter: 1000          # Maximum iterations
-  enforce_stationarity: false
-  enforce_invertibility: false
+  maxiter: 500           # Reduced iterations
+  enforce_stationarity: true   # Faster convergence
+  enforce_invertibility: true  # Faster convergence
 
 # Performance Criteria (sesuai standar jurnal)
 performance:
