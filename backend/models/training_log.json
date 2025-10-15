@@ -1,40 +1,40 @@
 {
-  "training_timestamp": "2025-10-13T23:58:30.534300",
+  "training_timestamp": "2025-10-15T08:36:37.769595",
   "model_info": {
     "order": [
-      1,
-      1,
-      1
-    ],
-    "seasonal_order": [
-      1,
       0,
       1,
+      2
+    ],
+    "seasonal_order": [
+      0,
+      0,
+      0,
       7
     ],
-    "model_formula": "SARIMA(1, 1, 1)x(1, 0, 1, 7)"
+    "model_formula": "SARIMA(0, 1, 2)x(0, 0, 0, 7)"
   },
   "data_info": {
-    "total_data_points": 731,
-    "training_points": 584,
-    "testing_points": 147,
+    "total_data_points": 648,
+    "training_points": 518,
+    "testing_points": 130,
     "date_range": {
-      "start": "2023-01-01T00:00:00",
-      "end": "2024-12-31T00:00:00"
+      "start": "2020-01-01T00:00:00",
+      "end": "2021-12-31T00:00:00"
     }
   },
   "model_performance": {
-    "rmse": 19.215269199242623,
-    "mae": 16.915011370810966,
-    "mape": 22.083045768731633,
-    "mse": 369.22657039936223,
-    "r_squared": -2.204454646904259,
-    "n_test_points": 147
+    "rmse": 12.772523313829012,
+    "mae": 12.155568037222832,
+    "mape": 234.71783863721458,
+    "mse": 163.13735180230566,
+    "r_squared": -5.539036455283642,
+    "n_test_points": 130
   },
   "model_statistics": {
-    "aic": 3392.5931945639736,
-    "bic": 3414.434130495726,
-    "log_likelihood": -1691.2965972819868,
+    "aic": 4446.540172544939,
+    "bic": 4459.2843011684645,
+    "log_likelihood": -2220.2700862724696,
     "converged": true
   },
   "configuration": {

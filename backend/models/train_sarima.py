@@ -92,6 +92,56 @@ class SARIMATrainer:
             logger.error(f"Error loading configuration: {e}")
             raise
     
+    def load_data_from_csv(self, csv_path: str = None) -> pd.DataFrame:
+        """
+        Load SHRI data dari CSV file (real data dari ekstraksi Excel)
+        
+        Args:
+            csv_path: Path to CSV file. If None, uses default path.
+            
+        Returns:
+            pd.DataFrame: Data sensus harian dengan kolom tanggal dan BOR
+        """
+        try:
+            # Use default CSV path if not provided
+            if csv_path is None:
+                csv_path = os.path.join(
+                    os.path.dirname(os.path.dirname(self.model_dir)),
+                    'data',
+                    'shri_training_data.csv'
+                )
+            
+            if not os.path.exists(csv_path):
+                raise FileNotFoundError(f"CSV file not found: {csv_path}")
+            
+            # Load CSV
+            df = pd.read_csv(csv_path)
+            
+            # Convert date column
+            df['tanggal'] = pd.to_datetime(df['tanggal'])
+            df.set_index('tanggal', inplace=True)
+            df = df[['bor']]  # Keep only BOR column
+            
+            # Validate data
+            if len(df) < self.config['data']['min_data_points']:
+                raise ValueError(f"Insufficient data points: {len(df)} < {self.config['data']['min_data_points']}")
+            
+            # Store data
+            self.data = df
+            
+            logger.info(f"Data loaded successfully from CSV")
+            logger.info(f"CSV path: {csv_path}")
+            logger.info(f"Total data points: {len(df)}")
+            logger.info(f"Date range: {df.index.min()} to {df.index.max()}")
+            logger.info(f"BOR range: {df['bor'].min():.1f}% to {df['bor'].max():.1f}%")
+            logger.info(f"BOR mean: {df['bor'].mean():.1f}%")
+            
+            return df
+            
+        except Exception as e:
+            logger.error(f"Error loading data from CSV: {e}")
+            raise
+    
     def load_data_from_database(self) -> pd.DataFrame:
         """
         Load SHRI data dari database SQLite
@@ -153,11 +203,14 @@ class SARIMATrainer:
         """
         try:
             if self.data is None:
-                raise ValueError("Data not loaded. Call load_data_from_database() first.")
+                raise ValueError("Data not loaded. Call load_data_from_csv() or load_data_from_database() first.")
             
-            # Get target series
-            target_col = self.config['database']['target_column']
-            series = self.data[target_col].copy()
+            # Get target series - handle both 'bor' and configured target column
+            if 'bor' in self.data.columns:
+                series = self.data['bor'].copy()
+            else:
+                target_col = self.config['database']['target_column']
+                series = self.data[target_col].copy()
             
             # Handle missing values
             if self.config['data']['missing_value_strategy'] == 'forward_fill':
@@ -637,17 +690,24 @@ class SARIMATrainer:
         except Exception as e:
             logger.error(f"Error printing results: {e}")
     
-    def run_full_pipeline(self):
+    def run_full_pipeline(self, use_csv: bool = True):
         """
         Jalankan seluruh training pipeline
+        
+        Args:
+            use_csv: If True, load real data from CSV. If False, load from database.
         """
         try:
             logger.info("🚀 STARTING SARIMA TRAINING PIPELINE")
             logger.info("="*60)
             
             # Step 1: Load data
-            logger.info("Step 1: Loading data from database...")
-            self.load_data_from_database()
+            if use_csv:
+                logger.info("Step 1: Loading REAL data from CSV (extracted from Excel)...")
+                self.load_data_from_csv()
+            else:
+                logger.info("Step 1: Loading data from database...")
+                self.load_data_from_database()
             
             # Step 2: Preprocess data
             logger.info("Step 2: Preprocessing data and train/test split...")
@@ -694,8 +754,9 @@ def main():
         config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
         trainer = SARIMATrainer(config_path)
         
-        # Run full training pipeline
-        trainer.run_full_pipeline()
+        # Run full training pipeline with REAL CSV data (default)
+        # Use use_csv=False to load from database instead
+        trainer.run_full_pipeline(use_csv=True)
         
     except Exception as e:
         logger.error(f"Training failed: {e}")
