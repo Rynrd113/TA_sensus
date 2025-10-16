@@ -59,8 +59,9 @@ class BaselineModels:
     4. SARIMA: Model utama penelitian
     """
     
-    def __init__(self, db_path: str = "../db/sensus.db"):
+    def __init__(self, db_path: str = "../db/sensus.db", csv_path: str = None):
         self.db_path = db_path
+        self.csv_path = csv_path
         self.data = None
         self.train_data = None
         self.test_data = None
@@ -72,6 +73,35 @@ class BaselineModels:
         self.model_dir = os.path.dirname(os.path.abspath(__file__))
         
         logger.info("Baseline Models Comparison System Initialized")
+    
+    def load_data_csv(self, csv_path: str = None) -> pd.DataFrame:
+        """Load data from CSV (for real RSJ data)"""
+        try:
+            if csv_path is None:
+                csv_path = os.path.join(
+                    os.path.dirname(os.path.dirname(self.model_dir)),
+                    'data',
+                    'shri_training_data.csv'
+                )
+            
+            logger.info(f"Loading data from CSV: {csv_path}")
+            df = pd.read_csv(csv_path)
+            df['tanggal'] = pd.to_datetime(df['tanggal'])
+            df.set_index('tanggal', inplace=True)
+            df = df[['bor']]
+            
+            self.data = df
+            
+            logger.info(f"Data loaded successfully")
+            logger.info(f"Total points: {len(df)}")
+            logger.info(f"Date range: {df.index.min().date()} to {df.index.max().date()}")
+            logger.info(f"BOR mean: {df['bor'].mean():.2f}%")
+            
+            return df
+            
+        except Exception as e:
+            logger.error(f"Error loading CSV: {e}")
+            raise
     
     def load_data(self) -> pd.DataFrame:
         """Load data from database"""
@@ -148,7 +178,7 @@ class BaselineModels:
             
             # Naive model: prediction = last observed value
             # For each test point, use the last available training value
-            last_train_value = self.train_data.iloc[-1]
+            last_train_value = float(self.train_data.iloc[-1])
             
             # Generate predictions for test period
             predictions = [last_train_value] * len(self.test_data)
@@ -192,10 +222,10 @@ class BaselineModels:
             # Calculate moving average of last 'window' days
             if len(self.train_data) < window:
                 # If not enough data, use all available data
-                ma_value = self.train_data.mean()
+                ma_value = float(self.train_data.mean())
                 actual_window = len(self.train_data)
             else:
-                ma_value = self.train_data.iloc[-window:].mean()
+                ma_value = float(self.train_data.iloc[-window:].mean())
                 actual_window = window
             
             # Generate predictions for test period
@@ -366,10 +396,18 @@ class BaselineModels:
     def calculate_metrics(self, actual: pd.Series, predicted: pd.Series) -> Dict[str, float]:
         """Calculate performance metrics"""
         try:
-            # Ensure same length and no NaN values
-            mask = ~(np.isnan(actual) | np.isnan(predicted))
-            actual_clean = actual[mask]
-            predicted_clean = predicted[mask]
+            # Convert to numpy arrays if needed
+            actual_vals = np.array(actual).flatten()
+            predicted_vals = np.array(predicted).flatten()
+            
+            # Ensure same length
+            if len(actual_vals) != len(predicted_vals):
+                raise ValueError(f"Length mismatch: actual={len(actual_vals)}, predicted={len(predicted_vals)}")
+            
+            # Remove NaN values
+            mask = ~(np.isnan(actual_vals) | np.isnan(predicted_vals))
+            actual_clean = actual_vals[mask]
+            predicted_clean = predicted_vals[mask]
             
             if len(actual_clean) == 0:
                 return {'error': 'No valid data points for evaluation'}
@@ -381,8 +419,8 @@ class BaselineModels:
             # MAPE with zero-handling
             mape_values = []
             for i in range(len(actual_clean)):
-                if actual_clean.iloc[i] != 0:
-                    mape_values.append(abs((actual_clean.iloc[i] - predicted_clean.iloc[i]) / actual_clean.iloc[i]))
+                if actual_clean[i] != 0:
+                    mape_values.append(abs((actual_clean[i] - predicted_clean[i]) / actual_clean[i]))
             
             mape = np.mean(mape_values) * 100 if mape_values else 0
             
@@ -552,15 +590,19 @@ class BaselineModels:
         except Exception as e:
             logger.error(f"Error printing summary: {e}")
     
-    def run_full_comparison(self):
+    def run_full_comparison(self, use_csv: bool = True):
         """Run complete baseline comparison"""
         try:
             logger.info("🚀 STARTING BASELINE MODELS COMPARISON")
             logger.info("="*60)
             
             # Step 1: Load data
-            logger.info("Step 1: Loading data...")
-            self.load_data()
+            if use_csv:
+                logger.info("Step 1: Loading REAL data from CSV...")
+                self.load_data_csv()
+            else:
+                logger.info("Step 1: Loading data from database...")
+                self.load_data()
             
             # Step 2: Split data
             logger.info("Step 2: Splitting data...")
@@ -601,8 +643,8 @@ def main():
         # Initialize comparison system
         comparison = BaselineModels()
         
-        # Run full comparison
-        comparison.run_full_comparison()
+        # Run full comparison with REAL CSV data
+        comparison.run_full_comparison(use_csv=True)
         
     except Exception as e:
         logger.error(f"Comparison failed: {e}")

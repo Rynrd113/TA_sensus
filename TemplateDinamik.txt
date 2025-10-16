@@ -1,0 +1,108 @@
+JUDUL NASKAH PUBLIKASI
+Penulis1, Penulis2 (minimal 2 penulis)
+1,2Institusi/Lembaga
+Contoh: Program Studi Teknik Informatika, Fakultas Teknologi Informasi, Universitas Stikubank
+e-mail: 1xxx@xxxx.xxx
+
+ABSTRAK
+      Abstrak maksimal 200 kata berbahasa Indonesia dicetak miring dengan Times New Roman 10 point. Abstrak harus jelas, deskriptif dan harus memberikan gambaran singkat masalah yang diteliti. Abstrak meliputi alasan pemilihan topik atau pentingnya topik penelitian, metode penelitian dan ringkasan hasil. Abstrak harus diakhiri dengan komentar tentang pentingnya hasil atau kesimpulan singkat.
+Kata Kunci: Algoritma A, algoritma B, kompleksitas
+1. PENDAHULUAN
+      Dokumen ini adalah template artikel yang dapat digunakan sebagai referensi untuk menulis manuscript. 
+      Pendahuluan menguraikan latar belakang permasalahan yang diselesaikan, isu-isu yang terkait dengan masalah yang diselesaikan, ulasan penelitian yang pernah dilakukan sebelumnya oleh peneliti lain yang relevan dengan penelitian yang dilakukan..
+1.1 Format Artikel dan Aturan Penulisan
+1. Artikel yang dikirim harus dalam format .doc.
+2. Jumlah halaman manuscript minimum 6 halaman dan maksimum 10 halaman.
+3. Ukuran halaman adalah A4.
+4. Gunakan style yang sudah tersedia di template proceeding untuk mempermudah penulisan.
+5. Jenis font yang digunakan adalah Times New Roman dengan ukuran font 10 point.
+6. Spasi yang dipakai untuk manuscript adalah 1 spasi
+7. Kata kunci yang dipakai sejumlah 3 sampai 5 buah.
+8. Penulisan sub bab dibatasi hanya sampai 2 level.
+2. TINJAUAN PUSTAKA (APABILA DIPERLUKAN)
+      Bagian ini berisi pembahasan tinjauan pustaka yang terkait dan digunakan didalam penelitian.
+3. METODE PENELITIAN
+      Bagian ini dapat meliputi analisa, arsitektur, metode yang dipakai untuk menyelesaikan masalah, implementasi.
+3.1 Gambar
+      Berikut ini merupakan aturan penyisipan gambar untuk manuscript.
+1. Semua gambar yang dimasukkan dalam dokumen harus berformat JPG/PNG dan BUKAN microsoft office object.
+2. Identifikasi/nama/judul gambar ditulis dibawah gambar dengan diawali kata Gambar.
+3. Penomoran gambar berdasarkan urutan tampilnya gambar.
+4. Identifikasi/nama/judul gambar menggunakan format sentence case (huruf awalnya besar), tanpa cetak tebal (bold), dan harus disertai dengan kalimat yang merujuk ke gambar tersebut agar memudahkan bagi reviewer untuk mencermati makna gambar. Contoh: …..ditunjukkan pada gambar 1.
+
+Gambar 1. Citra Lena.
+      
+3.2 Tabel
+      Semua tabel yang dimasukkan dalam dokumen harus berformat tabel dari microsoft word dan BUKAN microsoft office object atau gambar. Identifikasi/nama/judul tabel ditulis diatas tabel dengan diawali kata Tabel. Penomoran tabel berdasarkan urutan tampilnya tabel. Identifikasi/nama/judul tabel menggunakan format sentence case (huruf awalnya besar), tanpa cetak tebal (bold), dan harus disertai dengan kalimat yang merujuk ke tabel tersebut agar memudahkan bagi reviewer untuk mencermati makna gambar. Contoh: …..ditunjukkan pada tabel 1.
+Tabel 1. Perbandingan Algoritma A dan B.
+AlgoritmaWaktu ProsesKetelitianMemoriA120 ms98 %200 KBB105 ms95 %415 KB3.3 Penulisan Rumus/Formula Matematika
+      Gunakan fasilitas Microsoft Equation Editor untuk menulis rumus/persamaan matematika. Rumus/persamaan tersebut ditulis rata kiri dan diberi nomor persamaan yang diletakkan di ujung paling kanan dan dimulai dari nomor (1), (2) dst. Tiap persamaan yang muncul harus disertai kalimat yang mengacu ke persamaan tsb. Contoh: ......ditunjukkan pada persamaan (1).
+	(1)
+3.3.1 Pengacuan Pustaka/Sitasi
+      Pengacuan pustaka dilakukan dengan menuliskan [nomor urut pada daftar pustaka] mis. [1], [1,2], [1,2,3]. Sitasi kepustakaan harus ada dalam Daftar Pustaka dan Daftar Pustaka harus ada sitasinya dalam naskah. Pustaka yang disitasi pertama kali pada naskah [1], harus ada pada daftar pustaka no. 1, yang disitasi kedua, muncul pada daftar pustaka no. 2, begitu seterusnya. Daftar pustaka urut kemunculan sitasi, bukan urut nama belakang.  Daftar pustaka hanya memuat pustaka yang benar benar disitasi pada naskah. Semua data yang disajikan atau kutipan dalam artikel yang diambil dari artikel penulis lain harus melampirkan sumber referensi, Setiap referensi dikutip ditulis menggunakan nomor ditempatkan di akhir kalimat.
+4. HASIL DAN PEMBAHASAN
+      Pembahasan terhadap hasil penelitian dan pengujian yang diperoleh disajikan dalam bentuk uraian teoritik, baik secara kualitatif maupun kuantitatif. Hasil percobaan bila dimungkinkan ditampilkan dalam bentuk gambar/tabel seperti contoh pada gambar 2 berikut.
+
+Gambar 2. Grafik perbandingan e-RMS.
+5. KESIMPULAN
+      Kesimpulan harus mengindikasi secara jelas hasil-hasil yang diperoleh, kelebihan dan kekurangannya, serta kemungkinan pengembangan selanjutnya.
+6. SARAN (APABILA DIPERLUKAN)
+      Saran-saran untuk untuk penelitian lebih lanjut untuk menutup kekurangan penelitian. Tidak memuat saran-saran diluar untuk penelitian lanjut.
+UCAPAN TERIMA KASIH (APABILA DIPERLUKAN)
+      Penulis mengucapkan terima kasih kepada xyz yang telah memberi “dukungan financial” terhadap penelitian ini.
+      
+      
+      
+Berikut ini merupakan format untuk penulisan daftar pustaka:
+a. Buku dengan urutan penulisan: Penulis, tahun, judul buku (harus ditulis miring) volume (jika ada), edisi (jika ada), nama penerbit dan kota penerbit. Contoh:
+[1] Castleman, K. R., 2004, Digital Image Processing, Vol. 1, Ed.2,  Prentice Hall, New Jersey.
+
+b. Buku Terjemahan dengan urutan penulisan: Penulis asli (nama depan, tengah. (disingkat), belakang. (disingkat)), tahun buku terjemahan, judul buku terjemahan (harus ditulis miring), volume (jika ada), edisi (jika ada), (diterjemahkan oleh : nama penerjemah), nama penerbit terjemahan dan kota penerbit terjemahan. Contoh:
+[2] Gonzales, R., P. 2004, Digital Image Processing (Pemrosesan Citra Digital), Vol. 1, Ed.2, diterjemahkan oleh Handayani, S., Andri Offset, Yogyakarta.
+
+c. Artikel dalam Buku dengan urutan penulisan: Penulis artikel, tahun, judul artikel (harus ditulis miring), nama editor, judul buku (harus ditulis miring), volume (jika ada), edisi (jika ada), nama penerbit dan kota penerbit. Contoh:
+[3] Wyatt, J. C, dan Spiegelhalter, D., 1991,  Field Trials of Medical Decision-Aids: Potential Problems and Solutions,  Clayton, P. (ed.): Proc. 15th Symposium on Computer Applications in Medical Care, Vol 1, Ed. 2, McGraw Hill Inc, New York.
+
+d. Pustaka dalam bentuk artikel dalam majalah ilmiah:
+Urutan penulisan: Penulis, tahun, judul artikel, nama majalah (harus ditulis miring sebagai singkatan resminya), nomor, volume dan halaman. Contoh:
+[4] Yusoff, M, Rahman, S.,A., Mutalib, S., and Mohammed, A. , 2006, Diagnosing Application Development for Skin Disease Using Backpropagation Neural Network Technique, Journal of Information Technology, vol 18, hal 152-159.
+
+e. Pustaka dalam bentuk artikel dalam seminar ilmiah:
+Artikel dalam prosiding seminar dengan urutan penulisan: Penulis, tahun, judul artikel, Judul prosiding Seminar (harus ditulis miring), kota seminar, tanggal seminar. Contoh:
+[5] Wyatt, J. C, Spiegelhalter, D, 2008, Field Trials of Medical Decision-Aids: Potential Problems and Solutions, Proceeding of  15th Symposium on Computer Applications in Medical Care, Washington, May 3.
+
+f. Pustaka dalam bentuk Skripsi/Tesis/Disertasi dengan urutan penulisan: Penulis, tahun, judul skripsi, Skripsi/Tesis/Disertasi (harus ditulis miring), nama fakultas/ program pascasarjana, universitas, dan kota. Contoh:
+[6] Prasetya, E., 2006, Case Based Reasoning untuk mengidentifikasi kerusakan bangunan, Tesis, Program Pasca Sarjana Ilmu Komputer, Univ. Gadjah Mada, Yogyakarta.
+
+g. Pustaka dalam bentuk Laporan Penelitian:
+Urutan penulisan: Peneliti, tahun, judul laporan penelitian, nama laporan penelitian (harus ditulis miring), nama proyek penelitian, nama institusi, dan kota. Contoh:
+[7] Ivan, A.H., 2005, Desain target optimal, Laporan Penelitian Hibah Bersaing, Proyek Multi tahun, Dikti, Jakarta.
+
+h. Artikel majalah ilmiah versi cetakan dengan urutan penulisan: Penulis, tahun, judul artikel, nama majalah (harus ditulis miring sebagai singkatan resminya), nomor, volume dan halaman. Contoh:
+[8] Wallace, V. P. , Bamber, J. C. dan Crawford, D. C. 2000. Classification of reflectance spectra from pigmented skin lesions, a comparison of multivariate discriminate analysis and artificial neural network. Journal Physical Medical Biology , No.45, Vol.3, 2859-2871.
+
+i. Artikel majalah ilmiah versi online dengan urutan penulisan: Penulis, tahun, judul artikel, nama majalah ((harus ditulis miring sebagai singkatan resminya), nomor, volume, halaman dan alamat website. Contoh:
+[9] Xavier Pi-Sunyer, F., Becker, C., Bouchard, R.A., Carleton, G. A., Colditz, W., Dietz, J., Foreyt, R. Garrison, S., Grundy, B. C., 1998,  Clinical Guidelines on the identification, evaluation, and treatment of overweight and obesity in adults, Journal of National Institutes of Health, No.3, Vol.4, 123-130, :http://journals.lww.com/acsm-msse/Abstract/1998/11001/paper_treatment_of_obesity.pdf.
+
+j. Artikel umum dengan urutan penulisan: Penulis, tahun, judul artikel, alamat website (harus ditulis miring), diakses tanggal…. Contoh:
+[10] Borglet, C, 2003, Finding Association Rules with Apriori Algorithm, http://www.fuzzy.cs.uniagdeburgde/~borglet/apriori.pdf,  diakses tgl 23 Februari 2007.
+
+Pustaka yang digunakan yang terbit 10 tahun terakhir. Jumlah Pustaka yang digunakan minimal 15 artikel. Format daftar pustaka menggunakan Elsevier-Vancouver.
+
+Contoh Daftar Pustaka:
+DAFTAR PUSTAKA
+
+[1]	Castleman, Kenneth R., 2004, Digital Image Processing, Vol. 1, Ed.2,  Prentice Hall, New Jersey.
+[2]	Gonzales, R., P. 2004, Digital Image Processing (Pemrosesan Citra Digital), Vol. 1, Ed.2,  diterjemahkan oleh Handayani, S., Andri Offset, Yogyakarta.
+[3]	Wyatt, J. C, dan Spiegelhalter, D., 1991,  Field Trials of Medical Decision-Aids: Potential Problems and Solutions,  Clayton, P. (ed.): Proc. 15th Symposium on Computer Applications in Medical Care, Vol 1, Ed. 2, McGraw Hill Inc, New York.
+[4]	Yusoff, M, Rahman, S.,A., Mutalib, S., and Mohammed, A. , 2006, Diagnosing Application Development for Skin Disease Using Backpropagation Neural Network Technique, Journal of Information Technology, vol 18, hal 152-159.
+[5]	Wyatt, J. C, Spiegelhalter, D, 2008, Field Trials of Medical Decision-Aids: Potential Problems and Solutions, Proceeding of  15th Symposium on Computer Applications in Medical Care, Washington, May 3.
+[6]	Prasetya, E., 2006, Case Based Reasoning untuk mengidentifikasi kerusakan bangunan, Tesis, Program Pasca Sarjana Ilmu Komputer, Univ. Gadjah Mada, Yogyakarta.
+[7]	Ivan, A.H., 2005, Desain target optimal, Laporan Penelitian Hibah Bersaing, Proyek Multi tahun, Dikti, Jakarta.
+[8]	Wallace, V. P. , Bamber, J. C. dan Crawford, D. C. 2000. Classification of reflectance spectra from pigmented skin lesions, a comparison of multivariate discriminate analysis and artificial neural network. Journal Physical Medical Biology , No.45, Vol.3, 2859-2871.
+
+DINAMIK - Volume xx, Nomor xx, 20xx	                         	E-ISSN : 2623-1786 | P-ISSN : 0854-9524
+
+
+	Judul Naskah Publikasi	1
+

@@ -1,101 +1,101 @@
 {
-  "timestamp": "2025-10-13T23:59:12.171079",
+  "timestamp": "2025-10-17T02:29:52.788093",
   "data_info": {
     "total_points": 731,
     "train_points": 584,
     "test_points": 147,
     "date_range": {
-      "start": "2023-01-01T00:00:00",
-      "end": "2024-12-31T00:00:00"
+      "start": "2020-01-01T00:00:00",
+      "end": "2021-12-31T00:00:00"
     }
   },
   "models": {
     "naive": {
       "type": "naive",
       "description": "Naive Forecast (last observed value)",
-      "last_value": 72.5,
+      "last_value": 32.67443600704154,
       "n_predictions": 147
     },
     "moving_avg": {
       "type": "moving_average",
       "description": "Moving Average (7 days)",
       "window_size": 7,
-      "ma_value": 62.94571428571429,
+      "ma_value": 19.180355922357453,
       "n_predictions": 147
     },
     "arima": {
       "type": "arima",
-      "description": "ARIMA(3, 1, 3)",
+      "description": "ARIMA(3, 0, 2)",
       "order": [
         3,
-        1,
-        3
+        0,
+        2
       ],
-      "aic": 3763.262612968865,
-      "bic": 3793.8399232733186,
+      "aic": 4057.8233197760906,
+      "bic": 4088.4126266558883,
       "converged": false,
       "n_predictions": 147
     },
     "sarima": {
       "type": "sarima",
-      "description": "SARIMA(1, 1, 1)x(1, 0, 1, 7)",
+      "description": "SARIMA(0, 1, 2)x(1, 1, 2, 30)",
       "order": [
+        0,
         1,
-        1,
-        1
+        2
       ],
       "seasonal_order": [
         1,
-        0,
         1,
-        7
+        2,
+        30
       ],
-      "aic": 3392.5931945639736,
-      "bic": 3414.434130495726,
+      "aic": 3717.0895557101862,
+      "bic": 3741.387956441578,
       "converged": true,
       "n_predictions": 147
     }
   },
   "performance": {
     "naive": {
-      "rmse": 10.787384228968643,
-      "mae": 8.99374149659864,
-      "mape": 12.78108444995431
+      "rmse": 23.10381074152971,
+      "mae": 22.080856174162662,
+      "mape": 319.67649224562086
     },
     "moving_avg": {
-      "rmse": 15.10287739271423,
-      "mae": 12.82829931972789,
-      "mape": 16.540138156265336
+      "rmse": 10.955615043356431,
+      "mae": 10.06275008174223,
+      "mape": 151.73380033206539
     },
     "arima": {
-      "rmse": 14.745710320833663,
-      "mae": 12.431188739478895,
-      "mape": 15.864524476677792
+      "rmse": 7.641175773160018,
+      "mae": 6.626711896624379,
+      "mape": 91.44156314434798
     },
     "sarima": {
-      "rmse": 19.215269199242623,
-      "mae": 16.915011370810966,
-      "mape": 22.083045768731633
+      "rmse": 10.085901591644102,
+      "mae": 8.949531318428544,
+      "mape": 126.62732014500553
     }
   },
   "ranking": {
     "rmse": {
-      "naive": 1,
-      "arima": 2,
+      "arima": 1,
+      "sarima": 2,
       "moving_avg": 3,
-      "sarima": 4
+      "naive": 4
     },
     "mae": {
-      "naive": 1,
-      "arima": 2,
+      "arima": 1,
+      "sarima": 2,
       "moving_avg": 3,
-      "sarima": 4
+      "naive": 4
     },
     "mape": {
-      "naive": 1,
-      "arima": 2,
+      "arima": 1,
+      "sarima": 2,
       "moving_avg": 3,
-      "sarima": 4
+      "naive": 4
     }
   }
 }

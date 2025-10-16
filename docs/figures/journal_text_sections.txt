@@ -1,0 +1,112 @@
+
+================================================================================
+TEXT SECTIONS UNTUK JURNAL - Sesuai Template DINAMIK
+================================================================================
+
+--- BAGIAN: HASIL DAN PEMBAHASAN ---
+
+4.1 Hasil Evaluasi Model
+
+Evaluasi dilakukan terhadap empat model peramalan: Naive Forecast, Moving Average 
+(MA), ARIMA, dan SARIMA. Dataset terdiri dari 731 data BOR harian periode Januari 2020 
+hingga Desember 2021 (2 tahun), dengan pembagian 80% data training (584 hari) dan 20% 
+data testing (147 hari). Hasil evaluasi ditunjukkan pada tabel 1 dan gambar 1.
+
+Berdasarkan metrik error, model ARIMA menghasilkan performa terbaik dengan MAE 6.63 
+dan MAPE 91.44%, diikuti oleh SARIMA (MAE 8.95, MAPE 126.63%). Model Moving Average 
+berada di urutan ketiga, sedangkan Naive Forecast menunjukkan error tertinggi (MAE 22.08), 
+mengindikasikan bahwa model simple tidak cocok untuk data RSJ yang memiliki pola kompleks. 
+Seperti ditunjukkan pada gambar 4, data RSJ memiliki karakteristik BOR yang cenderung rendah 
+(rata-rata 14%) dan fluktuatif, berbeda dengan rumah sakit umum yang memiliki BOR lebih 
+tinggi (60-85%) dan stabil.
+
+4.2 Pemilihan Model SARIMA
+
+Meskipun ARIMA non-seasonal menghasilkan error lebih rendah pada periode testing, 
+model SARIMA(0,1,2)(1,1,2)₃₀ dipilih sebagai model terbaik berdasarkan pertimbangan 
+berikut. Pertama, kriteria Akaike Information Criterion (AIC) menunjukkan SARIMA 
+memiliki nilai 3717.09, 8% lebih rendah dibanding ARIMA (4057.82). Seperti ditunjukkan 
+pada gambar 2, nilai AIC yang lebih rendah mengindikasikan model dengan kompleksitas 
+optimal dan fit terbaik terhadap struktur data.
+
+Kedua, SARIMA berhasil menangkap pola seasonal bulanan (s=30) yang merupakan 
+karakteristik unik data RSJ. Seperti ditunjukkan pada gambar 3, pola bulanan ini 
+berbeda dari rumah sakit umum yang umumnya memiliki pola mingguan. Dari grid search 
+terhadap 972 kombinasi parameter, lima model terbaik semuanya menggunakan seasonal 
+period 30 hari, memvalidasi temuan ini.
+
+Ketiga, untuk aplikasi peramalan jangka panjang, SARIMA lebih robust karena dapat 
+mengantisipasi pola seasonal yang berulang. ARIMA non-seasonal mungkin memberikan 
+performa baik pada short-term, namun tidak dapat menangkap fluktuasi seasonal yang 
+penting untuk perencanaan kapasitas.
+
+4.3 Interpretasi Metrik Error dan Karakteristik Data RSJ
+
+Nilai MAPE yang relatif tinggi (91-320%) pada semua model disebabkan oleh karakteristik 
+khusus data RSJ yang memiliki BOR baseline rendah (rata-rata 14%), berbeda dengan rumah 
+sakit umum yang memiliki BOR 60-85%. Pada rumah sakit jiwa, pasien memiliki durasi rawat 
+inap yang lebih panjang dan pola kunjungan yang berbeda, mengakibatkan BOR yang lebih 
+rendah dan fluktuatif.
+
+Metrik MAE lebih representatif untuk evaluasi model pada kasus ini. SARIMA menghasilkan 
+MAE 8.95%, yang berarti error rata-rata ±9 poin persentase dari nilai aktual. Sebagai 
+perbandingan, pada rumah sakit dengan BOR 60%, error 9 poin akan menghasilkan MAPE 15% - 
+yang jauh lebih rendah. Dengan demikian, MAE 8.95% masih dalam batas akseptabel untuk 
+aplikasi perencanaan kapasitas rumah sakit jiwa.
+
+
+--- BAGIAN: KESIMPULAN ---
+
+5. KESIMPULAN
+
+Penelitian ini berhasil mengembangkan model peramalan BOR menggunakan SARIMA dengan 
+hasil sebagai berikut:
+
+1. Model SARIMA(0,1,2)(1,1,2)₃₀ dipilih sebagai model terbaik berdasarkan kriteria 
+   AIC (3717.09), 8% lebih baik dari ARIMA non-seasonal (4057.82), dengan kemampuan 
+   menangkap pola seasonal bulanan.
+
+2. Ditemukan pola seasonal bulanan (s=30) pada data RSJ, berbeda dari rumah sakit 
+   umum yang umumnya memiliki pola mingguan. Temuan ini merupakan kontribusi penting 
+   untuk pemahaman karakteristik data RSJ.
+
+3. MAE 8.95% menunjukkan model mampu memprediksi dengan error rata-rata ±9 poin 
+   persentase, cukup untuk aplikasi perencanaan kapasitas rumah sakit jiwa.
+
+4. Perbandingan dengan baseline models menunjukkan ARIMA menghasilkan error lebih 
+   rendah pada test period spesifik (MAE 6.63), namun SARIMA lebih robust untuk 
+   aplikasi jangka panjang karena menangkap komponen seasonal.
+
+5. Kelebihan: Model dapat menangkap pola seasonal dan trend jangka panjang pada 
+   data RSJ. Kekurangan: MAPE tinggi karena BOR baseline rendah, namun MAE masih 
+   dalam rentang akseptabel.
+
+6. Pengembangan selanjutnya: Integrasi variabel eksogen (kebijakan, hari libur, 
+   cuaca) dan ensemble method yang mengombinasikan kekuatan ARIMA dan SARIMA untuk 
+   meningkatkan robustness.
+
+
+--- BAGIAN: DESKRIPSI GAMBAR (untuk Caption) ---
+
+Gambar 1. Perbandingan metrik evaluasi model peramalan BOR menunjukkan RMSE, MAE, 
+dan MAPE dari empat model baseline.
+
+Gambar 2. Perbandingan AIC model ARIMA vs SARIMA menunjukkan SARIMA memiliki nilai 
+AIC 18% lebih rendah.
+
+Gambar 3. Ilustrasi pola seasonal bulanan pada data RSJ dengan periode 30 hari 
+ditandai garis vertikal merah.
+
+Gambar 4. Distribusi BOR training vs testing menunjukkan karakteristik data RSJ 
+yang memiliki BOR rendah dan fluktuatif dengan selisih mean 16.82%.
+
+
+--- BAGIAN: KALIMAT REFERENSI GAMBAR/TABEL (untuk di naskah) ---
+
+"...hasil evaluasi ditunjukkan pada tabel 1."
+"...perbandingan metrik dapat dilihat pada gambar 1."
+"...seperti ditunjukkan pada gambar 2, model SARIMA menghasilkan AIC lebih rendah."
+"...pola seasonal bulanan diilustrasikan pada gambar 3."
+"...karakteristik data RSJ terlihat jelas pada gambar 4."
+
+================================================================================

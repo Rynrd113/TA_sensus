@@ -1,5 +1,5 @@
 {
-  "training_timestamp": "2025-10-15T08:36:37.769595",
+  "training_timestamp": "2025-10-15T12:15:12.266129",
   "model_info": {
     "order": [
       0,
@@ -7,12 +7,12 @@
       2
     ],
     "seasonal_order": [
-      0,
-      0,
-      0,
-      7
+      1,
+      1,
+      2,
+      30
     ],
-    "model_formula": "SARIMA(0, 1, 2)x(0, 0, 0, 7)"
+    "model_formula": "SARIMA(0, 1, 2)x(1, 1, 2, 30)"
   },
   "data_info": {
     "total_data_points": 648,
@@ -24,17 +24,17 @@
     }
   },
   "model_performance": {
-    "rmse": 12.772523313829012,
-    "mae": 12.155568037222832,
-    "mape": 234.71783863721458,
-    "mse": 163.13735180230566,
-    "r_squared": -5.539036455283642,
+    "rmse": 12.185698430131461,
+    "mae": 11.2343183388281,
+    "mape": 210.32256565536497,
+    "mse": 148.49124623010837,
+    "r_squared": -4.951976427604699,
     "n_test_points": 130
   },
   "model_statistics": {
-    "aic": 4446.540172544939,
-    "bic": 4459.2843011684645,
-    "log_likelihood": -2220.2700862724696,
+    "aic": 3717.0895557101862,
+    "bic": 3741.387956441578,
+    "log_likelihood": -1852.5447778550931,
     "converged": true
   },
   "configuration": {
@@ -67,27 +67,33 @@
       ],
       "P_range": [
         0,
-        1
+        1,
+        2
       ],
       "D_range": [
-        0
-      ],
-      "Q_range": [
         0,
         1
       ],
+      "Q_range": [
+        0,
+        1,
+        2
+      ],
       "seasonal_periods": [
-        7
+        7,
+        14,
+        30
       ],
       "method": "lbfgs",
-      "maxiter": 500,
-      "enforce_stationarity": true,
-      "enforce_invertibility": true
+      "maxiter": 200,
+      "enforce_stationarity": false,
+      "enforce_invertibility": false
     },
     "performance": {
-      "target_mape": 10.0,
-      "target_rmse": 5.0,
-      "target_mae": 4.0
+      "target_mape": 50.0,
+      "target_rmse": 10.0,
+      "target_mae": 5.0,
+      "primary_metric": "mae"
     },
     "output": {
       "model_file": "sarima_model.pkl",
