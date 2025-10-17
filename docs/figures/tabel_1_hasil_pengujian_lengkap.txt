@@ -1,0 +1,22 @@
+TABEL 1. Perbandingan kinerja model peramalan BOR (Hasil Pengujian Lengkap)
+
+Cara insert ke Word:
+1. Buat tabel: Insert > Table > 6 kolom x 5 baris
+2. Copy-paste data di bawah ini
+3. Format: Times New Roman 10pt, center alignment
+
+| Model            | Order                  | RMSE   | MAE    | MAPE (%)  | AIC      |
+|------------------|------------------------|--------|--------|-----------|----------|
+| Naive Forecast   | Last value = 32.67     | 23.10  | 22.08  | 319.68    | -        |
+| Moving Average   | Window = 7             | 10.96  | 10.06  | 151.73    | -        |
+| ARIMA            | (3,0,2)                |  7.64  |  6.63  |  91.44    | 4057.82  |
+| SARIMA           | (0,1,2)(1,1,2)₃₀       | 10.09  |  8.95  | 126.63    | 3717.09  |
+
+Keterangan:
+- Dataset: 731 hari (2020-2021), Training 584 hari, Testing 147 hari
+- ARIMA: Terbaik untuk error metrics (MAE 6.63%)
+- SARIMA: Terbaik untuk AIC (8% lebih rendah), menangkap pola seasonal bulanan
+- Model dipilih: SARIMA (robust untuk forecasting jangka panjang)
+
+Referensi di naskah:
+"...hasil evaluasi ditunjukkan pada tabel 1."
