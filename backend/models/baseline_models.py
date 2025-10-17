@@ -424,10 +424,17 @@ class BaselineModels:
             
             mape = np.mean(mape_values) * 100 if mape_values else 0
             
+            # WAPE (Weighted Absolute Percentage Error) - Better for low baseline values
+            # WAPE = Sum of absolute errors / Sum of actual values
+            total_error = np.sum(np.abs(actual_clean - predicted_clean))
+            total_actual = np.sum(actual_clean)  # NO absolute value here!
+            wape = (total_error / total_actual * 100) if total_actual != 0 else 0
+            
             return {
                 'rmse': float(rmse),
                 'mae': float(mae),
-                'mape': float(mape)
+                'mape': float(mape),
+                'wape': float(wape)
             }
             
         except Exception as e:
@@ -450,7 +457,7 @@ class BaselineModels:
                     results[model_name] = metrics
                     
                     if 'error' not in metrics:
-                        logger.info(f"{model_name.upper()} - RMSE: {metrics['rmse']:.2f}, MAE: {metrics['mae']:.2f}, MAPE: {metrics['mape']:.2f}%")
+                        logger.info(f"{model_name.upper()} - RMSE: {metrics['rmse']:.2f}, MAE: {metrics['mae']:.2f}, MAPE: {metrics['mape']:.2f}%, WAPE: {metrics['wape']:.2f}%")
                     else:
                         logger.error(f"{model_name.upper()} - Error: {metrics['error']}")
                 else:

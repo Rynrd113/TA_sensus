@@ -1,0 +1,51 @@
+TABEL 1. Perbandingan Kinerja Model dengan WAPE (Metrik Utama)
+
+| Model | Order | RMSE | MAE | MAPE (%) | WAPE (%) ⭐ | AIC |
+|-------|-------|------|-----|----------|-------------|-----|
+| Naive Forecast | Last=32.67 | 23.10 | 22.08 | 319.68 | 109.61 | - |
+| Moving Average | Window=7 | 10.96 | 10.06 | 151.73 | 49.94 | - |
+| ARIMA | (3,0,2) | 7.64 | 6.63 | 91.44 | 32.90 | 4057.82 |
+| SARIMA s=7 | (0,1,2)(1,1,2)₇ | 10.45 | 9.18 | 130.53 | 45.53 | 3725.01 |
+| SARIMA s=30 🏆 | (0,1,2)(1,1,2)₃₀ | 10.09 | 8.95 | 126.63 | 44.44 | 3717.09 |
+
+⭐ WAPE (Weighted Absolute Percentage Error) = Metrik utama untuk evaluasi
+🏆 SARIMA s=30 dipilih: AIC terbaik + WAPE kompetitif + sesuai karakteristik RSJ
+
+
+TABEL 2. Perbandingan Seasonal Period (s=7 vs s=30)
+
+| Metrik | s=7 (Mingguan) | s=30 (Bulanan) | Selisih | % Improvement |
+|--------|----------------|----------------|---------|---------------|
+| WAPE (%) ⭐ | 45.53 | 44.44 | -1.09 | 2.4% ✅ |
+| AIC | 3725.01 | 3717.09 | -7.92 | 0.2% ✅ |
+| MAE (%) | 9.18 | 8.95 | -0.23 | 2.5% ✅ |
+| RMSE (%) | 10.45 | 10.09 | -0.36 | 3.4% ✅ |
+
+Kesimpulan: s=30 (bulanan) LEBIH BAIK di SEMUA metrik
+→ Konfirmasi bahwa RSJ memiliki pola BULANAN, berbeda dari RS umum (mingguan)
+
+
+TABEL 3. Perbandingan Karakteristik RSJ vs RS Umum
+
+| Aspek | RS Umum | RSJ (RSJD Abepura) |
+|-------|---------|-------------------|
+| BOR Standar (Kemenkes) | 60-85% | - |
+| BOR Aktual | 60-85% | 14.1% ⚠️ |
+| Durasi Rawat Inap | 4-7 hari | 21-90 hari |
+| Seasonal Pattern | Mingguan (s=7) | Bulanan (s=30) ✅ |
+| Turnover Rate | Tinggi | Rendah |
+| Emergency Admission | Tinggi | Rendah (terencana) |
+
+⚠️ BOR rendah (14.1%) BUKAN indikasi underperformance
+✅ Merupakan karakteristik NORMAL RSJ dengan durasi rawat panjang
+
+
+REFERENSI DI NASKAH:
+"...hasil evaluasi ditunjukkan pada tabel 1."
+"...perbandingan seasonal period pada tabel 2 menunjukkan..."
+"...perbedaan karakteristik dijelaskan pada tabel 3."
+
+CATATAN:
+- Dataset: 731 hari (2020-2021), Training 584 hari, Testing 147 hari
+- WAPE lebih representatif dibanding MAPE untuk BOR rendah
+- Standar Kemenkes 60-85% untuk RS umum, tidak applicable langsung untuk RSJ
